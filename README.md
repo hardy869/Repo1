@@ -43,6 +43,11 @@ screen (and listed in `content.js`):
 | `assets/audio/` | `bubu.mp3` | upbeat reel music for the Bubu & Dudu page |
 | `assets/audio/` | `holdmusic.mp3` | quirky corporate hold music for the HR portal |
 | `assets/img/` | `bubu-dudu.png` | the Dudu & Bubu characters (transparent PNG) — centerpiece of the Bubu & Dudu page |
+| `assets/img/` | `FLOWERS_01..03.jpg` | Flowers album (Memories page) |
+| `assets/img/` | `CHAI_01..03.jpg` | Chai album (Memories page) |
+| `assets/img/` | `TRIP_01..03.jpg` | Trips & outings album (Memories page) |
+| `assets/img/` | `GIFT_01..03.jpg` | Gifts album (Memories page) |
+| `assets/img/` | `YOU_01..03.jpg` | "You" album (Memories page) |
 
 Use `.jpg` for images and `.mp4` for videos (or update the path in `content.js`).
 Refresh the page and they appear automatically. Until then, a labelled
