@@ -170,6 +170,27 @@ body.hr-mode #back-btn { border-color: var(--hr-border); background: #fff; color
   animation: string-pulse 2.6s ease-in-out infinite alternate;
 }
 @keyframes string-pulse { from { opacity: 0.45; } to { opacity: 1; } }
+/* A bright bead of light travels along the string, star → moon, on a loop */
+#string line.string-spark {
+  stroke: #fff7da; stroke-width: 3; stroke-linecap: round;
+  stroke-dasharray: 3 97;                 /* pathLength=100 → one short bright dash */
+  filter: drop-shadow(0 0 7px rgba(255, 247, 200, 0.95));
+  animation: string-shoot 2.2s linear infinite;
+  opacity: 0.95;
+}
+@keyframes string-shoot { from { stroke-dashoffset: 0; } to { stroke-dashoffset: -100; } }
+
+/* ---- Click sparkle burst (on next / continue buttons) ----------------- */
+.spark-bit {
+  position: fixed; z-index: 90; pointer-events: none; line-height: 1;
+  transform: translate(-50%, -50%);
+  text-shadow: 0 0 6px currentColor;
+  animation: spark-fly 760ms ease-out forwards;
+}
+@keyframes spark-fly {
+  0%   { opacity: 1; transform: translate(-50%, -50%) scale(0.3) rotate(0deg); }
+  100% { opacity: 0; transform: translate(calc(-50% + var(--tx, 0px)), calc(-50% + var(--ty, 0px))) scale(1.15) rotate(150deg); }
+}
 
 /* ---- Starfield + moon (story background) ------------------------------ */
 #sky { position: fixed; inset: 0; z-index: -1; overflow: hidden; transition: opacity var(--med) var(--ease); }

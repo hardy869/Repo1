@@ -98,12 +98,35 @@ window.drawString = function () {
   if (!svg || !star || !moon) return;
   const s = star.getBoundingClientRect();
   const m = moon.getBoundingClientRect();
-  const line = svg.querySelector('line');
-  line.setAttribute('x1', s.left + s.width / 2);
-  line.setAttribute('y1', s.top + s.height / 2);
-  line.setAttribute('x2', m.left + m.width / 2);
-  line.setAttribute('y2', m.top + m.height / 2);
+  const x1 = s.left + s.width / 2, y1 = s.top + s.height / 2;
+  const x2 = m.left + m.width / 2, y2 = m.top + m.height / 2;
+  svg.querySelectorAll('line').forEach((line) => {     // base + travelling spark
+    line.setAttribute('x1', x1); line.setAttribute('y1', y1);
+    line.setAttribute('x2', x2); line.setAttribute('y2', y2);
+  });
 };
+
+// A little glittery burst at (x, y) — gold, rose, and white sparkles flying out.
+function spawnSparkles(x, y) {
+  const colors = ['#F4C95D', '#FFE9A8', '#E8A0BF', '#FFFFFF'];
+  const glyphs = ['✦', '✧', '✺'];
+  for (let k = 0; k < 14; k++) {
+    const bit = document.createElement('span');
+    bit.className = 'spark-bit';
+    bit.textContent = glyphs[(Math.random() * glyphs.length) | 0];
+    const angle = Math.random() * Math.PI * 2;
+    const dist = 28 + Math.random() * 58;
+    bit.style.left = x + 'px';
+    bit.style.top = y + 'px';
+    bit.style.color = colors[(Math.random() * colors.length) | 0];
+    bit.style.fontSize = (10 + Math.random() * 12) + 'px';
+    bit.style.setProperty('--tx', Math.cos(angle) * dist + 'px');
+    bit.style.setProperty('--ty', Math.sin(angle) * dist + 'px');
+    bit.style.animationDelay = (Math.random() * 60) + 'ms';
+    document.body.appendChild(bit);
+    setTimeout(() => bit.remove(), 900);
+  }
+}
 
 function updateCounter() {
   const el = document.getElementById('since-counter');
@@ -193,5 +216,15 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('resize', () => {
     const str = document.getElementById('string');
     if (str && str.classList.contains('show')) drawString();
+  });
+
+  // Glittery sparkle burst when she taps a next / continue button
+  document.body.addEventListener('click', (e) => {
+    const btn = e.target.closest('.btn-moon, .btn-hr, .heart-btn, [data-action="next"], [data-goto]');
+    if (!btn) return;
+    const r = btn.getBoundingClientRect();
+    const x = e.clientX || (r.left + r.width / 2);
+    const y = e.clientY || (r.top + r.height / 2);
+    spawnSparkles(x, y);
   });
 });
