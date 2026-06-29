@@ -4,15 +4,16 @@
 
 /* ---- Secret access gate ----------------------------------------------- */
 #access .screen__inner { max-width: 460px; }
-.lock-moon {
-  width: 90px; height: 90px; margin: 0 auto 1.5rem; border-radius: 50%;
-  background:
-    radial-gradient(circle at 62% 30%, rgba(150,148,188,0.55) 0 5px, transparent 6px),
-    radial-gradient(circle at 38% 58%, rgba(150,148,188,0.5) 0 7px, transparent 8px),
-    radial-gradient(circle at 70% 66%, rgba(150,148,188,0.45) 0 4px, transparent 5px),
-    radial-gradient(circle at 30% 40%, rgba(150,148,188,0.4) 0 3px, transparent 4px),
-    radial-gradient(circle at 35% 35%, #fff, var(--moon) 45%, #9a98c0 100%);
-  box-shadow: 0 0 60px 12px rgba(232,230,240,0.3); animation: float 6s ease-in-out infinite;
+.lock-star {
+  width: 112px; height: 112px; margin: 0 auto 1.5rem;
+  background: radial-gradient(circle at 50% 42%, #fff, var(--star-gold) 55%, #d9a93a 100%);
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  filter: drop-shadow(0 0 18px rgba(244,201,93,0.65));
+  animation: starglow 2.6s ease-in-out infinite alternate;
+}
+@keyframes starglow {
+  from { filter: drop-shadow(0 0 12px rgba(244,201,93,0.45)); }
+  to   { filter: drop-shadow(0 0 30px rgba(244,201,93,0.9)); }
 }
 @keyframes float { 50% { transform: translateY(-10px); } }
 .access-title { font-family: var(--font-display); font-size: 1.7rem; margin-bottom: 0.4em; }

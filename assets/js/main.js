@@ -90,6 +90,21 @@ window.onNavProgress = function (index, total, id, isHR) {
   star.style.top = (82 - frac * 68) + '%';      // 82% → 14%
 };
 
+// Draws the gold string between the center Star and the corner Moon (access screen).
+window.drawString = function () {
+  const svg = document.getElementById('string');
+  const star = document.querySelector('#access .lock-star');
+  const moon = document.getElementById('moon');
+  if (!svg || !star || !moon) return;
+  const s = star.getBoundingClientRect();
+  const m = moon.getBoundingClientRect();
+  const line = svg.querySelector('line');
+  line.setAttribute('x1', s.left + s.width / 2);
+  line.setAttribute('y1', s.top + s.height / 2);
+  line.setAttribute('x2', m.left + m.width / 2);
+  line.setAttribute('y2', m.top + m.height / 2);
+};
+
 function updateCounter() {
   const el = document.getElementById('since-counter');
   if (!el) return;
@@ -173,4 +188,10 @@ document.addEventListener('DOMContentLoaded', () => {
   MusicPlayer.init();
   Access.init();
   Nav.init();
+
+  // Keep the gold string attached when the window resizes
+  window.addEventListener('resize', () => {
+    const str = document.getElementById('string');
+    if (str && str.classList.contains('show')) drawString();
+  });
 });

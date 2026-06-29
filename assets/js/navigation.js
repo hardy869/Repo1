@@ -58,6 +58,15 @@ window.Nav = (function () {
 
     if (window.onNavProgress) window.onNavProgress(state.index, order.length, next.id, isHR);
     if (window.MusicPlayer) MusicPlayer.playForScreen(next.id);
+
+    // The gold string only ties the Star to the Moon on the access screen
+    const str = el('string');
+    if (str) {
+      const onAccess = next.id === 'access';
+      str.classList.toggle('show', onAccess);
+      if (onAccess && window.drawString) requestAnimationFrame(window.drawString);
+    }
+
     if (hooks[next.id]) hooks[next.id](next);
   }
 

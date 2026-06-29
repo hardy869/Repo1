@@ -11,7 +11,7 @@ window.Story = {
 
     /* ---- Secret access gate ------------------------------------------- */
     setInner('access-inner', `
-      <div class="lock-moon" aria-hidden="true"></div>
+      <div class="lock-star" aria-hidden="true"></div>
       <h1 class="access-title">${C.access.title}</h1>
       <p class="access-hint">${C.access.hint}</p>
       <form id="access-form" autocomplete="off">

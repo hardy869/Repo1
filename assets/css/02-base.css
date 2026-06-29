@@ -161,6 +161,16 @@ body.hr-mode #music-toggle { border-color: var(--hr-border); background: #fff; c
 #back-btn:hover { box-shadow: 0 0 18px rgba(244,201,93,0.4); }
 body.hr-mode #back-btn { border-color: var(--hr-border); background: #fff; color: var(--hr-blue); }
 
+/* ---- Gold glowing string (access screen: ties the Star to the Moon) --- */
+#string { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; display: none; z-index: 0; }
+#string.show { display: block; }
+#string line {
+  stroke: var(--star-gold); stroke-width: 1.8; stroke-linecap: round;
+  filter: drop-shadow(0 0 7px rgba(244,201,93,0.85));
+  animation: string-pulse 2.6s ease-in-out infinite alternate;
+}
+@keyframes string-pulse { from { opacity: 0.45; } to { opacity: 1; } }
+
 /* ---- Starfield + moon (story background) ------------------------------ */
 #sky { position: fixed; inset: 0; z-index: -1; overflow: hidden; transition: opacity var(--med) var(--ease); }
 body.hr-mode #sky { opacity: 0; }
