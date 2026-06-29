@@ -56,6 +56,7 @@ window.Nav = (function () {
     updateChrome();
 
     if (window.onNavProgress) window.onNavProgress(state.index, order.length, next.id, isHR);
+    if (window.MusicPlayer) MusicPlayer.playForScreen(next.id);
     if (hooks[next.id]) hooks[next.id](next);
   }
 

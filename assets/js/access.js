@@ -18,8 +18,8 @@ window.Access = {
       e.preventDefault();
       if (normalize(input.value) === expected) {
         error.textContent = '';
-        MusicPlayer.start();            // first user gesture — safe to start audio
-        Nav.goTo('welcome');
+        MusicPlayer.begin();            // first user gesture — unlock audio playback
+        Nav.goTo('welcome');            // navigation starts the right track for the screen
       } else {
         error.textContent = window.CONTENT.access.wrong;
         input.classList.add('access-shake');

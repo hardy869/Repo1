@@ -38,7 +38,10 @@ screen (and listed in `content.js`):
 |---|---|---|
 | `assets/img/` | `IMAGE_PLACEHOLDER_NN.jpg` | `IMAGE_PLACEHOLDER_06.jpg` (dudu-bubu pillows) |
 | `assets/video/` | `VIDEO_PLACEHOLDER_NN.mp4` | `VIDEO_PLACEHOLDER_02.mp4` (mom's reference video) |
-| `assets/audio/` | `theme.mp3` | the *This Is Us* theme |
+| `assets/audio/` | `theme.mp3` | the *This Is Us* theme (welcome + the final proposal) |
+| `assets/audio/` | `piano.mp3` | soft piano for the story-reading screens (use jazz here if you prefer) |
+| `assets/audio/` | `bubu.mp3` | upbeat reel music for the Bubu & Dudu page |
+| `assets/audio/` | `holdmusic.mp3` | quirky corporate hold music for the HR portal |
 | `assets/img/` | `bubu-dudu.png` | the Dudu & Bubu characters (transparent PNG) — centerpiece of the Bubu & Dudu page |
 
 Use `.jpg` for images and `.mp4` for videos (or update the path in `content.js`).
@@ -119,6 +122,13 @@ media: {
 
 Already configured: **Our future** = gallery · **Bubu & Dudu** = reel wall ·
 **Keepsake home** = shuffle album. Change any `mode` to restyle instantly.
+
+### Change the music per screen
+Background music is set in `content.js` under `music`. Each screen's track is in
+`music.byScreen` (set a screen to `null` for silence); everything else uses
+`music.default`. The track files are listed in `music.files` — change a path to
+swap a song. Tracks crossfade automatically, and screens sharing a track play it
+without restarting.
 
 ## 🗂️ Project structure
 

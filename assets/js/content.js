@@ -36,11 +36,34 @@ window.CONTENT = {
   },
 
   /* ---- Music ------------------------------------------------------------ */
+  // Per-screen background music. Each track loops and CROSSFADES into the next.
+  // Screens that share a track keep playing it without restarting.
   music: {
-    // Drop your file at assets/audio/theme.mp3  (the This Is Us theme).
-    theme: "assets/audio/theme.mp3",
-    hold: "assets/audio/holdmusic.mp3",
-    unlock: "assets/audio/unlock.mp3",
+    volume: 0.55,
+    // The actual audio files. Drop them in assets/audio/ with these names.
+    files: {
+      theme: "assets/audio/theme.mp3",     // the This Is Us theme
+      piano: "assets/audio/piano.mp3",     // soft piano for the story (swap for jazz.mp3 if you prefer)
+      bubu:  "assets/audio/bubu.mp3",      // upbeat reel music for Bubu & Dudu
+      hold:  "assets/audio/holdmusic.mp3", // quirky corporate hold music for the HR portal
+    },
+    // Default track for any screen not listed below (the story-reading screens).
+    default: "piano",
+    // Which track plays on which screen. Set a value to null for silence.
+    byScreen: {
+      access: null,                 // silent until she unlocks
+      welcome: "theme",             // This Is Us on arrival
+      "bubu-dudu": "bubu",          // upbeat reel vibe
+      "hr-transition": "hold",
+      resume: "hold",
+      verification: "hold",
+      "stress-test": "hold",
+      "culture-fit": "hold",
+      references: "hold",
+      compensation: "hold",
+      "offer-letter": "hold",
+      "final-proposal": "theme",    // the theme swells for the moment
+    },
   },
 
   /* ======================================================================
