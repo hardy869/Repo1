@@ -4,16 +4,37 @@
 
 /* ---- Secret access gate ----------------------------------------------- */
 #access .screen__inner { max-width: 460px; }
+/* Taara — a living, glowing, twinkling star */
 .lock-star {
-  width: 112px; height: 112px; margin: 0 auto 1.5rem;
-  background: radial-gradient(circle at 50% 42%, #fff, var(--star-gold) 55%, #d9a93a 100%);
-  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-  filter: drop-shadow(0 0 18px rgba(244,201,93,0.65));
-  animation: starglow 2.6s ease-in-out infinite alternate;
+  position: relative;
+  width: 132px; height: 132px; margin: 0 auto 1.6rem;
 }
-@keyframes starglow {
-  from { filter: drop-shadow(0 0 12px rgba(244,201,93,0.45)); }
-  to   { filter: drop-shadow(0 0 30px rgba(244,201,93,0.9)); }
+/* Breathing glow halo behind the star */
+.lock-star::before {
+  content: ''; position: absolute; inset: -38%; border-radius: 50%;
+  background: radial-gradient(circle, rgba(244,201,93,0.5) 0%, rgba(244,201,93,0.18) 42%, transparent 70%);
+  animation: halo-breathe 3.2s ease-in-out infinite;
+}
+/* The star itself — gradient body, layered glow, twinkling scale + shimmer */
+.lock-star::after {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(circle at 50% 38%, #ffffff 0%, #fff3c4 35%, var(--star-gold) 62%, #d9a93a 100%);
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  animation: star-twinkle 2.4s ease-in-out infinite;
+}
+@keyframes halo-breathe {
+  0%, 100% { transform: scale(0.9);  opacity: 0.55; }
+  50%      { transform: scale(1.14); opacity: 1; }
+}
+@keyframes star-twinkle {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+    filter: brightness(1) drop-shadow(0 0 8px rgba(244,201,93,0.7)) drop-shadow(0 0 18px rgba(244,201,93,0.4));
+  }
+  50% {
+    transform: scale(1.09) rotate(5deg);
+    filter: brightness(1.25) drop-shadow(0 0 16px rgba(255,240,180,0.95)) drop-shadow(0 0 36px rgba(244,201,93,0.7));
+  }
 }
 @keyframes float { 50% { transform: translateY(-10px); } }
 .access-title { font-family: var(--font-display); font-size: 1.7rem; margin-bottom: 0.4em; }

@@ -100,10 +100,12 @@ window.drawString = function () {
   const m = moon.getBoundingClientRect();
   const x1 = s.left + s.width / 2, y1 = s.top + s.height / 2;
   const x2 = m.left + m.width / 2, y2 = m.top + m.height / 2;
-  svg.querySelectorAll('line').forEach((line) => {     // base + travelling spark
-    line.setAttribute('x1', x1); line.setAttribute('y1', y1);
-    line.setAttribute('x2', x2); line.setAttribute('y2', y2);
-  });
+  // Quadratic curve with the control point pulled DOWN, so the string hangs with slack.
+  const mx = (x1 + x2) / 2, my = (y1 + y2) / 2;
+  const dist = Math.hypot(x2 - x1, y2 - y1);
+  const sag = Math.max(24, dist * 0.18);
+  const d = `M ${x1} ${y1} Q ${mx} ${my + sag} ${x2} ${y2}`;
+  svg.querySelectorAll('path').forEach((p) => p.setAttribute('d', d));   // base + travelling spark
 };
 
 // A little glittery burst at (x, y) — gold, rose, and white sparkles flying out.
