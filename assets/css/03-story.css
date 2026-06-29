@@ -6,7 +6,12 @@
 #access .screen__inner { max-width: 460px; }
 .lock-moon {
   width: 90px; height: 90px; margin: 0 auto 1.5rem; border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #fff, var(--moon) 45%, #9a98c0 100%);
+  background:
+    radial-gradient(circle at 62% 30%, rgba(150,148,188,0.55) 0 5px, transparent 6px),
+    radial-gradient(circle at 38% 58%, rgba(150,148,188,0.5) 0 7px, transparent 8px),
+    radial-gradient(circle at 70% 66%, rgba(150,148,188,0.45) 0 4px, transparent 5px),
+    radial-gradient(circle at 30% 40%, rgba(150,148,188,0.4) 0 3px, transparent 4px),
+    radial-gradient(circle at 35% 35%, #fff, var(--moon) 45%, #9a98c0 100%);
   box-shadow: 0 0 60px 12px rgba(232,230,240,0.3); animation: float 6s ease-in-out infinite;
 }
 @keyframes float { 50% { transform: translateY(-10px); } }

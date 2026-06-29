@@ -52,22 +52,37 @@ window.Story = {
     /* ---- Little things (constellation) --------------------------------- */
     const cards = C.littleThings.cards;
     const n = cards.length;
-    // Scatter the stars across the sky in a gentle wave, then join them with lines.
-    const pts = cards.map((c, i) => {
-      const x = 12 + (n === 1 ? 38 : (i / (n - 1)) * 76);   // 12% .. 88%
-      const y = Math.max(14, Math.min(86, 50 + Math.sin(i * 1.7) * 28));
-      return { x: +x.toFixed(1), y: +y.toFixed(1) };
-    });
-    const lines = pts.slice(1).map((p, i) =>
-      `<line id="cl${i}" x1="${pts[i].x}" y1="${pts[i].y}" x2="${p.x}" y2="${p.y}" />`).join('');
+    // Taurus (the bull): two horns rising to a brow, converging at Aldebaran (the eye = Taara).
+    const TAURUS = {
+      points: [{ x: 16, y: 16 }, { x: 84, y: 22 }, { x: 39, y: 46 }, { x: 60, y: 42 }, { x: 50, y: 80 }],
+      edges: [[0, 2], [1, 3], [2, 3], [2, 4], [3, 4]],
+      bright: 4,
+    };
+    let pts, edges, bright = -1;
+    if (C.littleThings.shape === 'taurus' && n === 5) {
+      pts = TAURUS.points; edges = TAURUS.edges; bright = TAURUS.bright;
+    } else {
+      // Fallback: gentle wave, joined in sequence.
+      pts = cards.map((c, i) => ({
+        x: +(12 + (n === 1 ? 38 : (i / (n - 1)) * 76)).toFixed(1),
+        y: +Math.max(14, Math.min(86, 50 + Math.sin(i * 1.7) * 28)).toFixed(1),
+      }));
+      edges = pts.slice(1).map((_, i) => [i, i + 1]);
+    }
+    this._edges = edges;
+    const lines = edges.map((e, idx) =>
+      `<line id="cl${idx}" x1="${pts[e[0]].x}" y1="${pts[e[0]].y}" x2="${pts[e[1]].x}" y2="${pts[e[1]].y}" />`).join('');
     const stars = cards.map((c, i) =>
-      `<button class="cstar" data-memory="${i}" style="left:${pts[i].x}%;top:${pts[i].y}%" aria-label="${c.title}">✦</button>`).join('');
+      `<button class="cstar${i === bright ? ' cstar--bright' : ''}" data-memory="${i}" style="left:${pts[i].x}%;top:${pts[i].y}%" aria-label="${c.title}">✦</button>`).join('');
+    const label = bright >= 0
+      ? `<span class="constel-label" style="left:${pts[bright].x}%;top:${pts[bright].y}%">Taara</span>` : '';
     setInner('little-things-inner', `
       <h1 class="title">${C.littleThings.title}</h1>
       <p class="subtitle">${C.littleThings.subtitle}</p>
       <div class="constel" id="constel">
         <svg class="constel-lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">${lines}</svg>
         ${stars}
+        ${label}
       </div>
       <div class="memory-card" id="memory-card"></div>
       <div class="spacer"></div>
@@ -158,13 +173,15 @@ window.Story = {
     card.classList.add('show');
     if (starEl) starEl.classList.add('opened');
 
-    // Light the connecting lines once both their endpoint stars are opened
+    // Light each connecting line once BOTH of its endpoint stars are opened
     if (!this._opened) this._opened = new Set();
     this._opened.add(i);
-    const left = document.getElementById('cl' + (i - 1));
-    if (left && this._opened.has(i - 1)) left.classList.add('lit');
-    const right = document.getElementById('cl' + i);
-    if (right && this._opened.has(i + 1)) right.classList.add('lit');
+    (this._edges || []).forEach((e, idx) => {
+      if (this._opened.has(e[0]) && this._opened.has(e[1])) {
+        const ln = document.getElementById('cl' + idx);
+        if (ln) ln.classList.add('lit');
+      }
+    });
 
     window.checkMedia();
     Media.hydrate();

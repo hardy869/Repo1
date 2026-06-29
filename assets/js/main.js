@@ -150,11 +150,12 @@ function buildStars() {
   const sky = document.getElementById('sky');
   let html = '';
   for (let i = 0; i < 140; i++) {
-    const size = Math.random() < 0.85 ? 1.5 : 2.5;
+    const sparkle = Math.random() < 0.14;                 // ~1 in 7 is a real star shape
+    const size = sparkle ? (8 + Math.random() * 7) : (Math.random() < 0.85 ? 1.5 : 2.5);
     const top = Math.random() * 100;
     const left = Math.random() * 100;
     const dur = 2 + Math.random() * 4;
-    html += `<span class="star" style="width:${size}px;height:${size}px;top:${top}%;left:${left}%;--dur:${dur}s"></span>`;
+    html += `<span class="star${sparkle ? ' sparkle' : ''}" style="width:${size}px;height:${size}px;top:${top}%;left:${left}%;--dur:${dur}s"></span>`;
   }
   sky.innerHTML = html;
 }

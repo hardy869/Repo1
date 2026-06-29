@@ -32,6 +32,7 @@ window.Nav = (function () {
     bar.style.width = (i / last) * 100 + '%';
     bar.classList.toggle('show', i >= 1 && i < last);
     el('music-toggle').classList.toggle('show', i >= 1);
+    el('back-btn').classList.toggle('show', i >= 2);   // hidden on the gate + welcome
   }
 
   function show(i) {
@@ -81,8 +82,18 @@ window.Nav = (function () {
         if (next) { go(state.index + 1); }
         else if (goto) { this.goTo(goto.getAttribute('data-goto')); }
       });
+
+      el('back-btn').addEventListener('click', () => this.prev());
     },
     next() { go(state.index + 1); },
+    // Step back one screen (plain, no replayed transitions). Skips the HR boot
+    // screen and never returns to the locked access gate.
+    prev() {
+      let t = state.index - 1;
+      if (t >= 0 && order[t] === 'hr-transition') t--;
+      if (t < 1) return;
+      show(t);
+    },
     goTo(id) { go(order.indexOf(id)); },
     current() { return order[state.index]; },
   };

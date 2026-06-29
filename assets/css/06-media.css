@@ -116,6 +116,14 @@
   box-shadow: 0 0 20px rgba(244,201,93,0.6);
   transform: translate(-50%, -50%) scale(1.12);
 }
+/* Aldebaran — the bull's eye, and "Taara" herself */
+.constel .cstar.cstar--bright { width: 64px; height: 64px; font-size: 1.5rem; box-shadow: 0 0 26px rgba(244,201,93,0.7); }
+.constel .cstar.cstar--bright.opened { transform: translate(-50%, -50%) scale(1.15); }
+.constel-label {
+  position: absolute; transform: translate(-50%, 38px);
+  font-family: var(--font-script); color: var(--star-gold); font-size: 1.2rem;
+  pointer-events: none; white-space: nowrap; text-shadow: 0 0 10px rgba(244,201,93,0.5);
+}
 
 /* ---- The star's journey to the moon ----------------------------------- */
 #journey-star {

@@ -120,7 +120,8 @@ window.CONTENT = {
 
   littleThings: {
     title: "Little things I'll never forget",
-    subtitle: "Tap each star. ✨",
+    subtitle: "Tap each star and watch Taurus appear — your constellation. ✨",
+    shape: "taurus",   // arranges the 5 stars into Taurus; the bright eye is "Taara"
     cards: [
       {
         title: "Flowers, every time",
