@@ -1,0 +1,110 @@
+/* =============================================================================
+   03-story.css  —  Moon & Star world components
+   ========================================================================== */
+
+/* ---- Secret access gate ----------------------------------------------- */
+#access .screen__inner { max-width: 460px; }
+.lock-moon {
+  width: 90px; height: 90px; margin: 0 auto 1.5rem; border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #fff, var(--moon) 45%, #9a98c0 100%);
+  box-shadow: 0 0 60px 12px rgba(232,230,240,0.3); animation: float 6s ease-in-out infinite;
+}
+@keyframes float { 50% { transform: translateY(-10px); } }
+.access-title { font-family: var(--font-display); font-size: 1.7rem; margin-bottom: 0.4em; }
+.access-hint  { color: var(--lavender); font-size: 0.95rem; font-style: italic; margin-bottom: 1.6em; }
+#access-form { display: flex; flex-direction: column; gap: 14px; align-items: center; }
+#access-input {
+  font-family: var(--font-mono); text-align: center; letter-spacing: 0.15em;
+  width: 100%; max-width: 320px; padding: 14px; font-size: 1.05rem;
+  color: var(--moon); background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(244,201,93,0.35); border-radius: 12px; outline: none;
+}
+#access-input:focus { border-color: var(--star-gold); box-shadow: 0 0 18px rgba(244,201,93,0.25); }
+#access-error { color: var(--rose); font-size: 0.9rem; min-height: 1.2em; font-style: italic; }
+.access-shake { animation: shake 0.4s; }
+@keyframes shake { 0%,100%{transform:none} 20%,60%{transform:translateX(-8px)} 40%,80%{transform:translateX(8px)} }
+
+/* ---- Constellation (Little things) ------------------------------------ */
+.constellation { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; margin: 1.5rem 0; }
+.cstar {
+  width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center;
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(244,201,93,0.4);
+  color: var(--star-gold); font-size: 1.3rem; transition: all var(--fast) var(--ease);
+}
+.cstar:hover { transform: scale(1.1); box-shadow: 0 0 22px rgba(244,201,93,0.5); }
+.cstar.opened { background: rgba(244,201,93,0.18); box-shadow: 0 0 16px rgba(244,201,93,0.45); }
+.memory-card {
+  margin: 1rem auto 0; max-width: 520px; text-align: left;
+  background: var(--twilight); border: 1px solid rgba(244,201,93,0.2);
+  border-radius: 16px; overflow: hidden; display: none;
+}
+.memory-card.show { display: block; animation: screen-in var(--med) var(--ease) both; }
+.memory-card .media { border-radius: 0; border: none; min-height: 220px; }
+.memory-card__body { padding: 18px 22px; }
+.memory-card__body h3 { font-family: var(--font-display); color: var(--star-gold); font-size: 1.4rem; margin-bottom: 0.3em; }
+.memory-card__body p  { font-size: 1.1rem; line-height: 1.55; color: var(--moon); }
+
+/* ---- Storm timeline (moon-path) --------------------------------------- */
+#the-storm .screen__inner { max-width: 640px; }
+.storm-timeline { position: relative; margin: 1.5rem 0; padding-left: 34px; text-align: left; }
+.storm-timeline::before {
+  content: ''; position: absolute; left: 9px; top: 6px; bottom: 6px; width: 2px;
+  background: linear-gradient(var(--star-gold), transparent);
+}
+.tl-node { position: relative; margin-bottom: 1.6rem; }
+.tl-node::before {
+  content: ''; position: absolute; left: -33px; top: 4px; width: 14px; height: 14px;
+  border-radius: 50%; background: var(--midnight); border: 2px solid var(--star-gold);
+  box-shadow: 0 0 12px rgba(244,201,93,0.5);
+}
+.tl-node .tl-date  { font-family: var(--font-script); color: var(--star-gold); font-size: 1.2rem; }
+.tl-node .tl-title { font-family: var(--font-display); font-size: 1.25rem; margin: 2px 0 4px; }
+.tl-node .tl-text  { color: var(--lavender); font-size: 1.02rem; line-height: 1.5; }
+.storm-resolve {
+  margin-top: 1.5rem; font-family: var(--font-display); font-size: 1.4rem;
+  line-height: 1.4; color: var(--moon); font-style: italic;
+}
+
+/* Rain overlay during the storm */
+#rain { position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: 0; transition: opacity var(--slow); }
+#rain.on { opacity: 0.5; }
+.raindrop { position: absolute; top: -10%; width: 1px; height: 60px; background: linear-gradient(transparent, rgba(184,181,224,0.6)); animation: fall linear infinite; }
+@keyframes fall { to { transform: translateY(120vh); } }
+
+/* ---- Future star-map dreams ------------------------------------------- */
+.dream-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 14px; margin: 1.5rem 0; }
+.dream {
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(244,201,93,0.25);
+  border-radius: 16px; padding: 18px 16px; text-align: left; transition: all var(--fast) var(--ease);
+}
+.dream:hover { transform: translateY(-3px); box-shadow: 0 0 22px rgba(244,201,93,0.2); }
+.dream h3 { font-family: var(--font-display); color: var(--star-gold); font-size: 1.2rem; margin-bottom: 4px; }
+.dream p  { color: var(--lavender); font-size: 0.98rem; line-height: 1.45; }
+
+/* ---- Final proposal --------------------------------------------------- */
+#final-proposal .screen__inner { max-width: 600px; }
+.final-line { font-family: var(--font-display); font-size: clamp(1.6rem, 5vw, 2.4rem); line-height: 1.4; }
+.final-big {
+  font-family: var(--font-display); font-weight: 600;
+  font-size: clamp(2.6rem, 10vw, 5rem); color: var(--star-gold);
+  text-shadow: 0 0 40px rgba(244,201,93,0.5); margin: 0.3em 0;
+}
+.final-hint { font-family: var(--font-script); color: var(--lavender); font-size: 1.6rem; margin-top: 0.4em; }
+.heart-btn {
+  margin-top: 2rem; width: 64px; height: 64px; border-radius: 50%;
+  font-size: 1.6rem; color: var(--rose); border: 1px solid rgba(232,160,191,0.5);
+  background: rgba(232,160,191,0.08); transition: all var(--fast) var(--ease);
+}
+.heart-btn:hover { transform: scale(1.12); box-shadow: 0 0 30px rgba(232,160,191,0.5); }
+
+/* ---- Keepsake home ---------------------------------------------------- */
+#keepsake-home .screen__inner { max-width: 640px; }
+.counter { font-family: var(--font-mono); color: var(--star-gold); font-size: 1.1rem; margin: 0.6rem 0 1.4rem; }
+.counter b { font-size: 1.4rem; }
+.chapter-menu { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-top: 1rem; }
+.chapter-menu button {
+  font-family: var(--font-serif); font-size: 1rem; color: var(--moon);
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(244,201,93,0.25);
+  border-radius: 12px; padding: 12px; transition: all var(--fast) var(--ease);
+}
+.chapter-menu button:hover { background: rgba(244,201,93,0.12); }

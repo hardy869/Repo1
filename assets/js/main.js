@@ -1,0 +1,175 @@
+/* =============================================================================
+   main.js  —  Boots the experience and wires the modules together.
+   Loaded LAST, so the helpers it declares are available to story.js / hr-portal.js
+   by the time their render() functions are called.
+   ========================================================================== */
+
+/* ---- Global helpers (used by story.js & hr-portal.js) ------------------ */
+
+function setInner(id, html) {
+  const node = document.getElementById(id);
+  if (node) node.innerHTML = html;
+}
+
+// Returns markup for an image slot. Drop assets/img/<SLOT>.jpg to fill it.
+function mediaImg(slot, desc) {
+  return `<img class="probe" src="assets/img/${slot}.jpg" alt="${desc}">
+          <span class="media__label"><b>${slot}</b>${desc}</span>`;
+}
+
+// Returns markup for a video slot. Drop assets/video/<SLOT>.mp4 to fill it.
+function mediaVideo(slot, desc) {
+  return `<video class="probe" src="assets/video/${slot}.mp4" controls playsinline preload="metadata"></video>
+          <span class="media__label"><b>${slot}</b>${desc}</span>`;
+}
+
+// Detects which media files actually exist and reveals them; placeholders stay otherwise.
+function checkMedia() {
+  document.querySelectorAll('img.probe, video.probe').forEach((m) => {
+    m.classList.remove('probe');
+    const wrap = m.closest('.media');
+    if (!wrap) return;
+    if (m.tagName === 'IMG') {
+      if (m.complete && m.naturalWidth > 0) { wrap.classList.add('has-media'); }
+      else {
+        m.addEventListener('load', () => wrap.classList.add('has-media'));
+        m.addEventListener('error', () => m.classList.add('hidden'));
+      }
+    } else {
+      m.addEventListener('loadeddata', () => wrap.classList.add('has-media'));
+      m.addEventListener('error', () => m.classList.add('hidden'));
+    }
+  });
+}
+window.checkMedia = checkMedia;
+
+// Reveals text one character at a time, line by line. Cancels cleanly on replay.
+window.typeSequence = function (parent, lines, opts) {
+  opts = opts || {};
+  const cls = opts.cls || '';
+  const charDelay = opts.charDelay || 32;
+  const lineGap = opts.lineGap || 420;
+  const onDone = opts.onDone;
+
+  const token = String((+parent.dataset.run || 0) + 1);
+  parent.dataset.run = token;
+  parent.innerHTML = '';
+  const alive = () => parent.dataset.run === token;
+  let li = 0;
+
+  (function nextLine() {
+    if (!alive()) return;
+    if (li >= lines.length) { if (onDone) onDone(); return; }
+    const p = document.createElement('p');
+    p.className = (cls + ' caret').trim();
+    parent.appendChild(p);
+    const text = lines[li];
+    let c = 0;
+    (function typeChar() {
+      if (!alive()) return;
+      if (c < text.length) { p.textContent = text.slice(0, ++c); setTimeout(typeChar, charDelay); }
+      else { p.classList.remove('caret'); li++; setTimeout(nextLine, lineGap); }
+    })();
+  })();
+};
+
+// The star travels from the horizon toward the moon as the chapters progress,
+// then merges with it at the proposal. Hidden during the HR portal.
+window.onNavProgress = function (index, total, id, isHR) {
+  const star = document.getElementById('journey-star');
+  if (!star) return;
+  if (isHR || id === 'access') { star.classList.remove('show', 'merge'); return; }
+
+  star.classList.add('show');
+  const merging = (id === 'final-proposal' || id === 'keepsake-home');
+  star.classList.toggle('merge', merging);
+
+  if (merging) { star.style.left = '82%'; star.style.top = '14%'; return; }
+  const frac = Math.max(0, Math.min(1, (index - 1) / (total - 2)));  // welcome → finale
+  star.style.left = (15 + frac * 67) + '%';     // 15% → 82% (toward the moon)
+  star.style.top = (82 - frac * 68) + '%';      // 82% → 14%
+};
+
+function updateCounter() {
+  const el = document.getElementById('since-counter');
+  if (!el) return;
+  const start = new Date(window.CONTENT.meta.anniversary + 'T00:00:00');
+  const now = new Date();
+  const days = Math.max(0, Math.floor((now - start) / 86400000));
+  el.textContent = days + (days === 1 ? ' day' : ' days');
+}
+
+/* ---- Per-screen enter hooks -------------------------------------------- */
+
+function registerHooks() {
+  const H = Nav.hooks;
+  const C = window.CONTENT;
+
+  H['welcome'] = () => {
+    const btn = document.getElementById('welcome-btn');
+    typeSequence(document.getElementById('welcome-lines'), C.welcome.lines,
+      { charDelay: 30, lineGap: 380, onDone: () => btn.classList.add('in') });
+  };
+
+  H['when-i-knew'] = () => {
+    const btn = document.getElementById('wik-btn');
+    typeSequence(document.getElementById('wik-lines'), C.whenIKnew.lines,
+      { charDelay: 32, lineGap: 520, onDone: () => btn.classList.add('in') });
+  };
+
+  H['the-storm'] = () => Story.startRain();
+
+  H['bubu-dudu'] = (el) => el.querySelectorAll('video.reel').forEach((v) => { v.play().catch(() => {}); });
+
+  H['hr-transition'] = () => HR.bootTerminal(() => Nav.next());
+
+  H['verification'] = () => HR.runChecklist('verify-list');
+  H['stress-test'] = () => HR.runChecklist('stress-list');
+  H['culture-fit'] = () => HR.runMeters();
+
+  H['final-proposal'] = () => {
+    const extra = document.getElementById('final-extra');
+    extra.style.display = 'none';
+    extra.classList.remove('in');
+    typeSequence(document.getElementById('final-lines'), C.finalProposal.lines, {
+      cls: 'final-line', charDelay: 42, lineGap: 700,
+      onDone: () => setTimeout(() => {
+        extra.style.display = 'block';
+        extra.classList.add('reveal');
+        requestAnimationFrame(() => extra.classList.add('in'));
+      }, 700),
+    });
+  };
+
+  H['keepsake-home'] = () => updateCounter();
+}
+
+/* ---- Build the starfield ----------------------------------------------- */
+
+function buildStars() {
+  const sky = document.getElementById('sky');
+  let html = '';
+  for (let i = 0; i < 140; i++) {
+    const size = Math.random() < 0.85 ? 1.5 : 2.5;
+    const top = Math.random() * 100;
+    const left = Math.random() * 100;
+    const dur = 2 + Math.random() * 4;
+    html += `<span class="star" style="width:${size}px;height:${size}px;top:${top}%;left:${left}%;--dur:${dur}s"></span>`;
+  }
+  sky.innerHTML = html;
+}
+
+/* ---- Boot -------------------------------------------------------------- */
+
+document.addEventListener('DOMContentLoaded', () => {
+  buildStars();
+  Story.render();
+  HR.render();
+  checkMedia();
+  Media.init();
+  Media.hydrate();
+  registerHooks();
+  MusicPlayer.init();
+  Access.init();
+  Nav.init();
+});

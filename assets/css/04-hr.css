@@ -1,0 +1,88 @@
+/* =============================================================================
+   04-hr.css  —  Corporate HR portal world components
+   These styles only apply while body.hr-mode is active.
+   ========================================================================== */
+
+body.hr-mode .screen__inner { max-width: 760px; text-align: left; }
+
+.hr-bar {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 12px 16px; margin-bottom: 1.4rem; background: var(--hr-surface);
+  border: 1px solid var(--hr-border); border-radius: 10px; font-family: var(--font-sans);
+}
+.hr-bar__brand { font-weight: 600; color: var(--hr-slate); font-size: 0.95rem; }
+.hr-bar__brand span { color: var(--hr-blue); }
+.hr-bar__pill { font-size: 0.75rem; font-weight: 500; color: var(--hr-blue); background: #E6F0FF; padding: 5px 10px; border-radius: 999px; }
+
+.hr-h { font-family: var(--font-sans); font-weight: 600; font-size: 1.6rem; color: var(--hr-slate); margin-bottom: 0.2em; }
+.hr-sub { font-family: var(--font-sans); color: var(--hr-muted); font-size: 0.98rem; margin-bottom: 1.4rem; }
+
+.hr-card {
+  background: var(--hr-surface); border: 1px solid var(--hr-border);
+  border-radius: 12px; padding: 18px 20px; margin-bottom: 14px; font-family: var(--font-sans);
+}
+.hr-card h3 { font-size: 1.05rem; color: var(--hr-slate); font-weight: 600; }
+.hr-card .meta { color: var(--hr-muted); font-size: 0.85rem; margin-bottom: 6px; }
+.hr-card ul { list-style: none; }
+.hr-card li { color: var(--hr-slate); font-size: 0.92rem; padding: 3px 0 3px 18px; position: relative; }
+.hr-card li::before { content: '–'; position: absolute; left: 2px; color: var(--hr-blue); }
+
+/* Résumé */
+.resume-head { display: flex; gap: 16px; align-items: center; margin-bottom: 16px; }
+.resume-head .media { width: 84px; height: 84px; min-height: 84px; border-radius: 50%; flex: 0 0 auto; }
+.resume-head .media__label { font-size: 0.55rem; padding: 4px; }
+.resume-name { font-family: var(--font-sans); font-weight: 600; font-size: 1.3rem; color: var(--hr-slate); }
+.resume-role { font-family: var(--font-sans); color: var(--hr-muted); font-size: 0.9rem; }
+.tag-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.tag { font-family: var(--font-sans); font-size: 0.8rem; color: var(--hr-blue-dark); background: #EAF1FE; padding: 5px 11px; border-radius: 7px; }
+.tag.cert { color: #14532D; background: #E7F6EC; }
+
+/* Check / status rows (verification, stress test) */
+.check-row {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 13px 16px; background: var(--hr-surface); border: 1px solid var(--hr-border);
+  border-radius: 10px; margin-bottom: 10px; font-family: var(--font-sans);
+  opacity: 0; transform: translateX(-10px); transition: all var(--fast) var(--ease);
+}
+.check-row.in { opacity: 1; transform: none; }
+.check-row .claim { color: var(--hr-slate); font-size: 0.95rem; }
+.check-row .status {
+  display: inline-flex; align-items: center; gap: 6px; font-size: 0.8rem; font-weight: 600;
+  color: var(--hr-green); white-space: nowrap;
+}
+.check-row .status::before { content: '✓'; display: inline-grid; place-items: center; width: 18px; height: 18px; border-radius: 50%; background: var(--hr-green); color: #fff; font-size: 0.7rem; }
+
+/* Culture-fit meters */
+.meter { margin-bottom: 14px; font-family: var(--font-sans); }
+.meter__top { display: flex; justify-content: space-between; font-size: 0.9rem; color: var(--hr-slate); margin-bottom: 6px; }
+.meter__track { height: 9px; background: var(--hr-border); border-radius: 999px; overflow: hidden; }
+.meter__fill { height: 100%; width: 0; background: var(--hr-blue); border-radius: 999px; transition: width 1.1s var(--ease); }
+.hr-verdict { font-family: var(--font-sans); font-weight: 600; color: var(--hr-green); margin-top: 10px; }
+
+/* Reference video card */
+.ref-card { background: var(--hr-surface); border: 1px solid var(--hr-border); border-radius: 12px; overflow: hidden; margin-bottom: 14px; font-family: var(--font-sans); }
+.ref-card .media { border-radius: 0; border: none; min-height: 240px; background: #0A0A0A; }
+.ref-card__body { padding: 14px 18px; display: flex; gap: 12px; align-items: center; justify-content: space-between; }
+.ref-card .tag { background: #EAF1FE; }
+.ref-stamp { font-size: 0.75rem; font-weight: 600; color: var(--hr-green); border: 1px solid var(--hr-green); padding: 4px 10px; border-radius: 7px; transform: rotate(-4deg); }
+
+/* Compensation perks */
+.perk-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
+.perk { background: var(--hr-surface); border: 1px solid var(--hr-border); border-radius: 12px; padding: 16px; font-family: var(--font-sans); }
+.perk h4 { color: var(--hr-slate); font-size: 1rem; font-weight: 600; margin-bottom: 4px; }
+.perk p { color: var(--hr-muted); font-size: 0.85rem; }
+.comp-note { font-family: var(--font-sans); font-style: italic; color: var(--hr-muted); margin-bottom: 1.2rem; }
+
+/* Offer letter — rendered on warm paper, the pivot back to emotion */
+.offer-paper {
+  background: #FBF8F0; border: 1px solid #E6DFCB; border-radius: 14px;
+  padding: clamp(24px, 5vw, 44px); box-shadow: 0 12px 40px rgba(0,0,0,0.18);
+  font-family: var(--font-serif); color: #3a3326; max-width: 640px; margin: 0 auto;
+}
+.offer-paper .greeting { font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 1rem; }
+.offer-paper p { font-size: 1.15rem; line-height: 1.6; margin-bottom: 0.8rem; }
+.offer-paper .sign { font-family: var(--font-script); font-size: 1.8rem; color: #6b4f1d; margin-top: 1.2rem; }
+.offer-paper .sign small { display: block; font-family: var(--font-serif); font-size: 1rem; color: #6b6253; }
+
+/* Generic centering for HR buttons */
+.hr-actions { text-align: center; margin-top: 1.4rem; }

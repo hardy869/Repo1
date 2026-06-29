@@ -1,0 +1,49 @@
+/* =============================================================================
+   01-variables.css  —  Design tokens for both worlds
+   Edit a value here and it updates everywhere.
+   ========================================================================== */
+
+/* Fonts (loaded online; gracefully falls back to system fonts offline).
+   To self-host for full offline use, download the .woff2 files into
+   assets/fonts/ and replace this @import with @font-face rules. */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Dancing+Script:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+:root {
+  /* 🌙 Moon & Star world */
+  --night:        #0B1026;
+  --midnight:     #131A33;
+  --twilight:     #2A2F52;
+  --twilight-2:   #1d2342;
+  --moon:         #E8E6F0;
+  --star-gold:    #F4C95D;
+  --lavender:     #B8B5E0;
+  --rose:         #E8A0BF;
+
+  /* 💼 HR portal world */
+  --hr-bg:        #F7F9FC;
+  --hr-surface:   #FFFFFF;
+  --hr-slate:     #1E293B;
+  --hr-muted:     #64748B;
+  --hr-blue:      #2563EB;
+  --hr-blue-dark: #1E40AF;
+  --hr-green:     #16A34A;
+  --hr-border:    #E2E8F0;
+  --hr-terminal-bg: #0A0A0A;
+  --hr-terminal-fg: #22C55E;
+
+  /* Fonts */
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-serif:   'Cormorant Garamond', Georgia, serif;
+  --font-script:  'Dancing Script', 'Brush Script MT', cursive;
+  --font-sans:    'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  --font-mono:    'IBM Plex Mono', ui-monospace, Consolas, monospace;
+
+  /* Motion */
+  --ease:   cubic-bezier(0.22, 1, 0.36, 1);
+  --slow:   1200ms;
+  --med:    700ms;
+  --fast:   320ms;
+
+  /* Layout */
+  --maxw: 720px;
+}

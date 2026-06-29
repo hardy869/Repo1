@@ -1,0 +1,133 @@
+/* =============================================================================
+   06-media.css  —  Media modes, reel wall, lightbox, constellation, star journey
+   ========================================================================== */
+
+.media-block { margin: 1.2rem auto; max-width: 560px; }
+
+/* ---- Gallery ---------------------------------------------------------- */
+.media-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; }
+.g-thumb { position: relative; padding: 0; border-radius: 14px; overflow: hidden; display: block; transition: transform var(--fast) var(--ease); }
+.g-thumb:hover { transform: translateY(-3px); }
+.g-thumb .media { min-height: 140px; aspect-ratio: 1 / 1; border-radius: 14px; }
+.g-cap { position: absolute; left: 8px; bottom: 8px; z-index: 2; font-family: var(--font-script); color: #fff; font-size: 1.05rem; text-shadow: 0 1px 6px rgba(0,0,0,0.7); }
+
+/* ---- Shuffle album ---------------------------------------------------- */
+.media-shuffle { position: relative; min-height: 320px; border-radius: 16px; }
+.media-shuffle .sh-item { position: absolute; inset: 0; opacity: 0; transition: opacity 1s var(--ease); }
+.media-shuffle .sh-item.show { opacity: 1; }
+.media-shuffle .media { position: absolute; inset: 0; min-height: 0; height: 100%; }
+.sh-cap { position: absolute; left: 12px; bottom: 12px; z-index: 2; font-family: var(--font-script); color: #fff; font-size: 1.3rem; text-shadow: 0 1px 8px rgba(0,0,0,0.7); }
+
+/* ---- Flip cards ------------------------------------------------------- */
+.media-flip { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
+.flip-card { padding: 0; perspective: 1000px; aspect-ratio: 3 / 4; }
+.flip-inner { position: relative; width: 100%; height: 100%; transition: transform 0.7s var(--ease); transform-style: preserve-3d; }
+.flip-card.flipped .flip-inner { transform: rotateY(180deg); }
+.flip-front, .flip-back { position: absolute; inset: 0; backface-visibility: hidden; border-radius: 14px; overflow: hidden; }
+.flip-front .media { height: 100%; min-height: 0; }
+.flip-back {
+  transform: rotateY(180deg); background: var(--twilight);
+  border: 1px solid rgba(244,201,93,0.3); display: grid; place-items: center; padding: 16px;
+}
+.flip-back p { font-family: var(--font-display); color: var(--star-gold); font-size: 1.1rem; line-height: 1.4; }
+
+/* ---- Reveal cards ----------------------------------------------------- */
+.media-reveal { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
+.reveal-card { padding: 0; position: relative; aspect-ratio: 3 / 4; border-radius: 14px; overflow: hidden; }
+.reveal-cover {
+  position: absolute; inset: 0; z-index: 2; display: grid; place-items: center; padding: 12px;
+  background: var(--twilight); border: 1px solid rgba(244,201,93,0.3); border-radius: 14px;
+  font-family: var(--font-script); color: var(--star-gold); font-size: 1.15rem; transition: opacity var(--med) var(--ease);
+}
+.reveal-card.revealed .reveal-cover { opacity: 0; pointer-events: none; }
+.reveal-media .media { height: 100%; min-height: 0; }
+.reveal-card .reveal-media { position: absolute; inset: 0; }
+
+/* ---- Reel wall (Bubu & Dudu) ------------------------------------------ */
+.media-wall { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; max-width: 620px; }
+.media-wall .media { min-height: 200px; aspect-ratio: 9 / 16; border-radius: 16px; border-color: rgba(232,160,191,0.35); }
+.media-wall .media:nth-child(odd) { aspect-ratio: 3 / 4; }
+
+/* ---- Lightbox --------------------------------------------------------- */
+#lightbox {
+  position: fixed; inset: 0; z-index: 200; display: none; place-items: center;
+  background: rgba(5, 8, 20, 0.92); padding: 24px; backdrop-filter: blur(4px);
+}
+#lightbox.open { display: grid; animation: screen-in var(--fast) var(--ease) both; }
+#lightbox .lb-content { max-width: min(90vw, 720px); max-height: 84vh; }
+#lightbox .media { min-height: 50vh; border-radius: 16px; }
+#lightbox .media img, #lightbox .media video { position: static; width: 100%; height: auto; max-height: 84vh; object-fit: contain; }
+.lb-close { position: fixed; top: 18px; right: 20px; font-size: 1.6rem; color: var(--moon); z-index: 201; }
+
+/* ---- Bubu & Dudu playful theme (breaks away from the night sky) -------- */
+#bubu-dudu {
+  /* Half & half: Dudu (bear-brown) on the left, Bubu (panda-white) on the right,
+     with a soft pink glow rising between them. */
+  background:
+    radial-gradient(ellipse at 50% 116%, rgba(248,196,212,0.65), transparent 58%),
+    linear-gradient(90deg,
+      #EAD0AE 0%, #EAD0AE 40%,
+      #F7EADb 50%,
+      #FFFBF8 60%, #FFFBF8 100%);
+}
+#bubu-dudu .title { color: #B23A6B; }
+#bubu-dudu .subtitle, #bubu-dudu .prose p { color: #7a5566; }
+#bubu-dudu .btn-moon { color: #B23A6B; border-color: rgba(178,58,107,0.45); background: rgba(255,255,255,0.55); }
+#bubu-dudu .btn-moon:hover { background: rgba(255,255,255,0.9); box-shadow: 0 0 24px rgba(232,160,191,0.5); }
+/* The hero PNG (both characters) is the centerpiece, so no emoji accent here. */
+#bubu-dudu .bubu-hero {
+  position: relative; width: 280px; max-width: 72%; margin: 0.3rem auto 1.1rem;
+  min-height: 200px; display: grid; place-items: center;
+}
+#bubu-dudu .bubu-hero img {
+  width: 100%; height: auto;
+  filter: drop-shadow(0 12px 20px rgba(178,58,107,0.25));
+  animation: bob 3s ease-in-out infinite;
+}
+#bubu-dudu .bubu-hero__ph {
+  font-size: 2.6rem; color: #B23A6B; text-align: center; line-height: 1.2;
+}
+#bubu-dudu .bubu-hero__ph small {
+  display: block; font-size: 0.7rem; font-family: var(--font-mono); color: #9b7080; margin-top: 8px;
+}
+#bubu-dudu .bubu-hero.has-img .bubu-hero__ph { display: none; }
+/* flip-card backs styled for the light pastel theme */
+#bubu-dudu .flip-back { background: #fff; border-color: rgba(178,58,107,0.3); }
+#bubu-dudu .flip-back p { color: #B23A6B; }
+#bubu-dudu .media { border-color: rgba(178,58,107,0.25); background: #fff; }
+#bubu-dudu .media__label { color: #9b7080; }
+#bubu-dudu .media__label b { color: #B23A6B; }
+@keyframes bob { 50% { transform: translateY(-8px); } }
+
+/* ---- Constellation (Little things) ------------------------------------ */
+.constel { position: relative; width: 100%; max-width: 560px; height: 340px; margin: 1rem auto; }
+.constel-lines { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.constel-lines line { stroke: var(--star-gold); stroke-width: 1; opacity: 0; transition: opacity 1s var(--ease); vector-effect: non-scaling-stroke; }
+.constel-lines line.lit { opacity: 0.55; }
+.constel .cstar {
+  position: absolute; transform: translate(-50%, -50%);
+  width: 50px; height: 50px; border-radius: 50%; display: grid; place-items: center;
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(244,201,93,0.4);
+  color: var(--star-gold); font-size: 1.2rem; transition: all var(--fast) var(--ease);
+}
+.constel .cstar:hover { box-shadow: 0 0 22px rgba(244,201,93,0.55); }
+.constel .cstar.opened {
+  background: rgba(244,201,93,0.22);
+  box-shadow: 0 0 20px rgba(244,201,93,0.6);
+  transform: translate(-50%, -50%) scale(1.12);
+}
+
+/* ---- The star's journey to the moon ----------------------------------- */
+#journey-star {
+  position: fixed; left: 15%; top: 82%; z-index: -1; display: none;
+  width: 16px; height: 16px; border-radius: 50%;
+  background: radial-gradient(circle, #fff, var(--star-gold));
+  box-shadow: 0 0 18px 4px rgba(244,201,93,0.7);
+  transform: translate(-50%, -50%);
+  transition: left 1.4s var(--ease), top 1.4s var(--ease), box-shadow 1.4s var(--ease), transform 1.4s var(--ease);
+}
+#journey-star.show { display: block; }
+#journey-star.merge {
+  transform: translate(-50%, -50%) scale(2.6);
+  box-shadow: 0 0 70px 26px rgba(244,201,93,0.6);
+}

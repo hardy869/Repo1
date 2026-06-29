@@ -1,0 +1,184 @@
+/* =============================================================================
+   02-base.css  —  Reset, layout engine, shared UI, responsive
+   ========================================================================== */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body { height: 100%; }
+
+body {
+  font-family: var(--font-serif);
+  background: var(--night);
+  color: var(--moon);
+  overflow: hidden;                 /* the chapter engine handles flow */
+  -webkit-font-smoothing: antialiased;
+  transition: background var(--med) var(--ease);
+}
+
+/* Body theme groups (set by navigation.js) */
+body.story-mode { background: var(--night); color: var(--moon); }
+body.hr-mode    { background: var(--hr-bg);  color: var(--hr-slate); }
+
+img { display: block; max-width: 100%; }
+button { font: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+
+/* ---- Screen (chapter) engine ------------------------------------------ */
+.screen {
+  position: fixed;
+  inset: 0;
+  display: none;
+  flex-direction: column;
+  align-items: center;            /* horizontal centering */
+  padding: clamp(20px, 6vw, 64px);
+  overflow-y: auto;
+}
+/* margin:auto centers short content vertically, but collapses when content is
+   taller than the viewport so the top stays reachable (avoids the flexbox clip bug) */
+.screen__inner { margin: auto 0; }
+.screen.active {
+  display: flex;
+  animation: screen-in var(--med) var(--ease) both;
+}
+.screen.leaving { animation: screen-out var(--fast) var(--ease) both; }
+
+@keyframes screen-in  { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@keyframes screen-out { from { opacity: 1; } to { opacity: 0; } }
+
+.screen__inner {
+  width: 100%;
+  max-width: var(--maxw);
+  text-align: center;
+}
+
+/* ---- Shared reveal utility -------------------------------------------- */
+.reveal { opacity: 0; transform: translateY(20px); }
+.reveal.in { opacity: 1; transform: none; transition: opacity var(--slow) var(--ease), transform var(--slow) var(--ease); }
+
+/* ---- Typewriter line -------------------------------------------------- */
+.tw-line { opacity: 0; }
+.tw-line.show { opacity: 1; }
+.caret::after {
+  content: '';
+  display: inline-block;
+  width: 2px; height: 1em;
+  margin-left: 2px;
+  background: currentColor;
+  vertical-align: -2px;
+  animation: blink 900ms steps(1) infinite;
+}
+@keyframes blink { 50% { opacity: 0; } }
+
+/* ---- Buttons ---------------------------------------------------------- */
+.btn-moon {
+  font-family: var(--font-display);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  color: var(--star-gold);
+  padding: 14px 30px;
+  border: 1px solid rgba(244, 201, 93, 0.5);
+  border-radius: 999px;
+  background: rgba(244, 201, 93, 0.04);
+  transition: all var(--fast) var(--ease);
+}
+.btn-moon:hover {
+  background: rgba(244, 201, 93, 0.14);
+  box-shadow: 0 0 26px rgba(244, 201, 93, 0.28);
+  transform: translateY(-1px);
+}
+
+.btn-hr {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: #fff;
+  background: var(--hr-blue);
+  padding: 12px 22px;
+  border-radius: 8px;
+  transition: all var(--fast) var(--ease);
+}
+.btn-hr:hover { background: var(--hr-blue-dark); }
+.btn-hr::after { content: '  →'; }
+
+/* ---- Media placeholder slots ------------------------------------------ */
+.media {
+  position: relative;
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--twilight);
+  border: 1px solid rgba(244, 201, 93, 0.18);
+  display: grid;
+  place-items: center;
+  min-height: 200px;
+}
+.media img, .media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.media img.hidden, .media video.hidden { display: none; }
+.media__label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--lavender);
+  padding: 16px;
+  text-align: center;
+  line-height: 1.6;
+  z-index: 1;
+}
+.media__label b { color: var(--star-gold); display: block; margin-bottom: 6px; letter-spacing: 0.05em; }
+.media.has-media .media__label { display: none; }
+body.hr-mode .media { background: var(--hr-border); border-color: var(--hr-border); }
+body.hr-mode .media__label { color: var(--hr-muted); }
+body.hr-mode .media__label b { color: var(--hr-blue); }
+
+/* ---- Progress bar + music toggle (persistent chrome) ------------------ */
+#progress {
+  position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+  background: linear-gradient(90deg, var(--star-gold), var(--rose));
+  z-index: 50; transition: width var(--med) var(--ease); opacity: 0;
+}
+#progress.show { opacity: 1; }
+
+#music-toggle {
+  position: fixed; top: 16px; right: 16px; z-index: 60;
+  width: 44px; height: 44px; border-radius: 50%;
+  display: none; align-items: center; justify-content: center;
+  border: 1px solid rgba(244,201,93,0.4); background: rgba(11,16,38,0.6);
+  color: var(--star-gold); font-size: 1.1rem; backdrop-filter: blur(6px);
+  transition: all var(--fast) var(--ease);
+}
+#music-toggle.show { display: flex; }
+#music-toggle:hover { box-shadow: 0 0 18px rgba(244,201,93,0.4); }
+body.hr-mode #music-toggle { border-color: var(--hr-border); background: #fff; color: var(--hr-blue); }
+
+/* ---- Starfield + moon (story background) ------------------------------ */
+#sky { position: fixed; inset: 0; z-index: -1; overflow: hidden; transition: opacity var(--med) var(--ease); }
+body.hr-mode #sky { opacity: 0; }
+.star {
+  position: absolute; background: #fff; border-radius: 50%;
+  animation: twinkle var(--dur, 3s) ease-in-out infinite alternate;
+}
+@keyframes twinkle { from { opacity: 0.2; } to { opacity: 1; } }
+#moon {
+  position: fixed; top: 8%; right: 10%; width: 120px; height: 120px; border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #fff, var(--moon) 45%, #9a98c0 100%);
+  box-shadow: 0 0 80px 20px rgba(232, 230, 240, 0.25); z-index: -1;
+  transition: opacity var(--med) var(--ease);
+}
+body.hr-mode #moon { opacity: 0; }
+
+/* ---- Typography helpers ----------------------------------------------- */
+.eyebrow { font-family: var(--font-script); color: var(--star-gold); font-size: 1.6rem; }
+h1.title, .title {
+  font-family: var(--font-display); font-weight: 500;
+  font-size: clamp(2rem, 6vw, 3.4rem); line-height: 1.1; margin-bottom: 0.4em;
+}
+.subtitle { font-style: italic; color: var(--lavender); font-size: 1.15rem; margin-bottom: 1.5em; }
+.prose p { font-size: clamp(1.1rem, 3.4vw, 1.45rem); line-height: 1.6; margin: 0.6em 0; color: var(--moon); }
+.signature { font-family: var(--font-script); color: var(--star-gold); font-size: 1.5rem; margin-top: 1em; }
+.spacer { height: 1.8rem; }
+
+.name-star { color: var(--star-gold); }
+
+/* ---- Reduced motion --------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 1ms !important; }
+}
