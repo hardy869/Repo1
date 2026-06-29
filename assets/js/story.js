@@ -50,6 +50,16 @@ window.Story = {
     `);
 
     /* ---- Little things (constellation) --------------------------------- */
+    /* ---- A poem (Hindi) ----------------------------------------------- */
+    setInner('poem-inner', `
+      <h1 class="title">${C.poem.title}</h1>
+      <p class="subtitle">${C.poem.subtitle}</p>
+      <div class="poem">${C.poem.lines.map(l => `<p>${l || '&nbsp;'}</p>`).join('')}</div>
+      <p class="poem-sign">${C.poem.signature}</p>
+      <div class="spacer"></div>
+      <button class="btn-moon" data-action="next">${C.poem.button}</button>
+    `);
+
     const cards = C.littleThings.cards;
     const n = cards.length;
     // Taurus (the bull): two horns rising to a brow, converging at Aldebaran (the eye = Taara).
@@ -154,7 +164,7 @@ window.Story = {
       <div id="final-extra" style="display:none">
         <p class="final-big">${C.finalProposal.finalLine}</p>
         <p class="final-hint">${C.finalProposal.afterHint}</p>
-        <button class="heart-btn" data-action="next" aria-label="continue">${C.finalProposal.button}</button>
+        <button class="heart-btn" id="yes-btn" aria-label="yes">${C.finalProposal.button}</button>
       </div>
     `);
 

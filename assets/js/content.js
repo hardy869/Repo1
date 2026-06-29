@@ -118,6 +118,20 @@ window.CONTENT = {
     button: "Continue",
   },
 
+  // A poem you wrote for her. Paste your real Hindi poem in `lines` (one line each).
+  poem: {
+    title: "A poem I wrote for you",
+    subtitle: "in the language of my heart",
+    lines: [
+      "ये चंद पंक्तियाँ, सिर्फ़ तुम्हारे नाम…",
+      "",
+      "(अपनी असली कविता यहाँ लिखें —",
+      "हर पंक्ति को एक नई लाइन में रखें)",
+    ],
+    signature: "— तुम्हारा चाँद",
+    button: "Continue",
+  },
+
   littleThings: {
     title: "Little things I'll never forget",
     subtitle: "Tap each star and watch Taurus appear — your constellation. ✨",

@@ -6,7 +6,7 @@
 /* Fonts (loaded online; gracefully falls back to system fonts offline).
    To self-host for full offline use, download the .woff2 files into
    assets/fonts/ and replace this @import with @font-face rules. */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Dancing+Script:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Dancing+Script:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Kalam:wght@400;700&display=swap');
 
 :root {
   /* 🌙 Moon & Star world */
@@ -37,6 +37,7 @@
   --font-script:  'Dancing Script', 'Brush Script MT', cursive;
   --font-sans:    'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
   --font-mono:    'IBM Plex Mono', ui-monospace, Consolas, monospace;
+  --font-hindi:   'Kalam', 'Noto Sans Devanagari', cursive;
 
   /* Motion */
   --ease:   cubic-bezier(0.22, 1, 0.36, 1);

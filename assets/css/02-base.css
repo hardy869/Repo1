@@ -238,6 +238,51 @@ h1.title, .title {
 
 .name-star { color: var(--star-gold); }
 
+/* ---- Sparkle cursor / touch trail ------------------------------------- */
+.trail-bit {
+  position: fixed; z-index: 85; pointer-events: none; font-size: 12px;
+  transform: translate(-50%, -50%); text-shadow: 0 0 5px currentColor;
+  animation: trail-fade 700ms ease-out forwards;
+}
+@keyframes trail-fade {
+  from { opacity: 0.9; transform: translate(-50%, -50%) scale(1); }
+  to   { opacity: 0; transform: translate(-50%, 8px) scale(0.4); }
+}
+
+/* ---- Shooting stars --------------------------------------------------- */
+.shooting-star {
+  position: absolute; width: 3px; height: 3px; border-radius: 50%; background: #fff;
+  box-shadow: 0 0 7px 2px rgba(255, 255, 255, 0.85);
+  animation: shoot 1.3s ease-in forwards;
+}
+.shooting-star::after {
+  content: ''; position: absolute; top: 50%; right: 0; width: 90px; height: 1.5px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.85), transparent);
+  transform: translateY(-50%);
+}
+@keyframes shoot {
+  0%   { opacity: 0; transform: translate(0, 0); }
+  12%  { opacity: 1; }
+  100% { opacity: 0; transform: translate(-280px, 175px); }
+}
+
+/* ---- "Yes" celebration: petals + confetti ----------------------------- */
+.celebrate { position: fixed; inset: 0; pointer-events: none; z-index: 120; overflow: hidden; }
+.petal { position: fixed; top: -6vh; will-change: transform; animation: petal-fall linear forwards; }
+@keyframes petal-fall {
+  0%   { opacity: 0; transform: translate(0, -6vh) rotate(0deg); }
+  10%  { opacity: 1; }
+  100% { opacity: 0.9; transform: translate(var(--sway, 0), 112vh) rotate(420deg); }
+}
+.confetti {
+  position: fixed; left: 50vw; top: 58vh; width: 9px; height: 14px; border-radius: 2px;
+  opacity: 0; animation: confetti-burst 1.7s ease-out forwards;
+}
+@keyframes confetti-burst {
+  0%   { opacity: 1; transform: translate(0, 0) rotate(0deg); }
+  100% { opacity: 0; transform: translate(var(--tx, 0), var(--ty, 0)) rotate(560deg); }
+}
+
 /* ---- Reduced motion --------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 1ms !important; }

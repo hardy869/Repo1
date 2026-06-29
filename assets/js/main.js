@@ -130,6 +130,58 @@ function spawnSparkles(x, y) {
   }
 }
 
+// A shooting star streaks across the night sky.
+function shootStar() {
+  const sky = document.getElementById('sky');
+  if (!sky) return;
+  const s = document.createElement('div');
+  s.className = 'shooting-star';
+  s.style.top = (4 + Math.random() * 42) + '%';
+  s.style.left = (42 + Math.random() * 48) + '%';
+  sky.appendChild(s);
+  setTimeout(() => s.remove(), 1500);
+}
+function scheduleShootingStars() {
+  const loop = () => {
+    if (!document.body.classList.contains('hr-mode')) shootStar();
+    setTimeout(loop, 6000 + Math.random() * 9000);
+  };
+  setTimeout(loop, 4500);
+}
+
+// The big "Yes" moment — rose petals fall while gold confetti bursts.
+function celebrate() {
+  const layer = document.createElement('div');
+  layer.className = 'celebrate';
+  document.body.appendChild(layer);
+
+  const petals = ['🌸', '🌷', '🌹', '💗', '✨'];
+  for (let i = 0; i < 48; i++) {
+    const p = document.createElement('span');
+    p.className = 'petal';
+    p.textContent = petals[(Math.random() * petals.length) | 0];
+    p.style.left = (Math.random() * 100) + 'vw';
+    p.style.fontSize = (14 + Math.random() * 20) + 'px';
+    p.style.animationDuration = (2.6 + Math.random() * 2.4) + 's';
+    p.style.animationDelay = (Math.random() * 1.2) + 's';
+    p.style.setProperty('--sway', (Math.random() * 80 - 40) + 'px');
+    layer.appendChild(p);
+  }
+  const colors = ['#F4C95D', '#FFE9A8', '#E8A0BF', '#FFFFFF', '#ff7eb6'];
+  for (let i = 0; i < 70; i++) {
+    const c = document.createElement('span');
+    c.className = 'confetti';
+    const angle = Math.random() * Math.PI * 2;
+    const dist = 120 + Math.random() * 260;
+    c.style.setProperty('--tx', Math.cos(angle) * dist + 'px');
+    c.style.setProperty('--ty', (Math.sin(angle) * dist - 90) + 'px');
+    c.style.background = colors[(Math.random() * colors.length) | 0];
+    c.style.animationDelay = (Math.random() * 0.25) + 's';
+    layer.appendChild(c);
+  }
+  setTimeout(() => layer.remove(), 6500);
+}
+
 function updateCounter() {
   const el = document.getElementById('since-counter');
   if (!el) return;
@@ -229,4 +281,31 @@ document.addEventListener('DOMContentLoaded', () => {
     const y = e.clientY || (r.top + r.height / 2);
     spawnSparkles(x, y);
   });
+
+  // The big "Yes": celebrate on the final screen, then drift to the keepsake home
+  document.body.addEventListener('click', (e) => {
+    if (e.target.closest('#yes-btn')) {
+      celebrate();
+      setTimeout(() => Nav.goTo('keepsake-home'), 3400);
+    }
+  });
+
+  // Sparkle trail that follows her cursor / finger (paused in the HR portal)
+  let lastTrail = 0;
+  document.addEventListener('pointermove', (e) => {
+    if (document.body.classList.contains('hr-mode')) return;
+    const now = Date.now();
+    if (now - lastTrail < 45) return;
+    lastTrail = now;
+    const b = document.createElement('span');
+    b.className = 'trail-bit';
+    b.textContent = Math.random() < 0.5 ? '✦' : '✧';
+    b.style.left = e.clientX + 'px';
+    b.style.top = e.clientY + 'px';
+    b.style.color = Math.random() < 0.5 ? '#F4C95D' : '#FFFFFF';
+    document.body.appendChild(b);
+    setTimeout(() => b.remove(), 700);
+  });
+
+  scheduleShootingStars();
 });

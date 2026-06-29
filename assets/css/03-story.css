@@ -124,6 +124,12 @@
 }
 .heart-btn:hover { transform: scale(1.12); box-shadow: 0 0 30px rgba(232,160,191,0.5); }
 
+/* ---- Poem (Hindi) ----------------------------------------------------- */
+#poem .screen__inner { max-width: 600px; }
+.poem { font-family: var(--font-hindi); font-size: clamp(1.3rem, 4.2vw, 1.95rem); line-height: 1.9; color: var(--moon); margin: 1rem 0; }
+.poem p { margin: 0.15em 0; }
+.poem-sign { font-family: var(--font-hindi); color: var(--star-gold); font-size: 1.4rem; margin-top: 0.6em; }
+
 /* ---- Keepsake home ---------------------------------------------------- */
 #keepsake-home .screen__inner { max-width: 640px; }
 .counter { font-family: var(--font-mono); color: var(--star-gold); font-size: 1.1rem; margin: 0.6rem 0 1.4rem; }
