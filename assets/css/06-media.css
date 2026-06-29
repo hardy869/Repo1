@@ -48,6 +48,17 @@
 .media-wall .media { min-height: 200px; aspect-ratio: 9 / 16; border-radius: 16px; border-color: rgba(232,160,191,0.35); }
 .media-wall .media:nth-child(odd) { aspect-ratio: 3 / 4; }
 
+/* ---- Memories: grid of shuffle albums --------------------------------- */
+.mem-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 18px; margin: 1.4rem 0; }
+.mem-album {
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(244,201,93,0.2);
+  border-radius: 16px; padding: 14px; text-align: center;
+}
+.mem-title { font-family: var(--font-display); color: var(--star-gold); font-size: 1.35rem; margin-bottom: 2px; }
+.mem-note { color: var(--lavender); font-size: 0.9rem; font-style: italic; margin-bottom: 10px; }
+.mem-album .media-block { margin: 0; }
+.mem-album .media-shuffle { min-height: 240px; }
+
 /* ---- Lightbox --------------------------------------------------------- */
 #lightbox {
   position: fixed; inset: 0; z-index: 200; display: none; place-items: center;

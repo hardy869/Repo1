@@ -89,6 +89,21 @@ window.Story = {
       <button class="btn-moon" data-action="next">${C.littleThings.button}</button>
     `);
 
+    /* ---- Our memories (shuffle albums) -------------------------------- */
+    const albums = C.memories.albums.map(a => `
+      <div class="mem-album">
+        <h3 class="mem-title">${a.name}</h3>
+        ${a.note ? `<p class="mem-note">${a.note}</p>` : ''}
+        ${Media.render(a.media)}
+      </div>`).join('');
+    setInner('memories-inner', `
+      <h1 class="title">${C.memories.title}</h1>
+      <p class="subtitle">${C.memories.subtitle}</p>
+      <div class="mem-grid">${albums}</div>
+      <div class="spacer"></div>
+      <button class="btn-moon" data-action="next">${C.memories.button}</button>
+    `);
+
     /* ---- The storm ----------------------------------------------------- */
     const nodes = C.storm.timeline.map(n => `
       <div class="tl-node">

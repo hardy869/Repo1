@@ -157,6 +157,55 @@ window.CONTENT = {
     button: "Continue",
   },
 
+  // Our memories — five shuffle albums. Add as many photos per album as you like.
+  memories: {
+    title: "Our memories so far",
+    subtitle: "Little worlds we've collected together. ✨",
+    albums: [
+      {
+        name: "Flowers", note: "every single time we meet",
+        media: { mode: "shuffle", items: [
+          { image: "FLOWERS_01", desc: "A bouquet you gave her" },
+          { image: "FLOWERS_02", desc: "Another flowers photo" },
+          { image: "FLOWERS_03", desc: "One more flowers photo" },
+        ] },
+      },
+      {
+        name: "Chai", note: "we both run on it ☕",
+        media: { mode: "shuffle", items: [
+          { image: "CHAI_01", desc: "Chai together" },
+          { image: "CHAI_02", desc: "Another chai moment" },
+          { image: "CHAI_03", desc: "One more chai photo" },
+        ] },
+      },
+      {
+        name: "Trips & outings", note: "places we've wandered",
+        media: { mode: "shuffle", items: [
+          { image: "TRIP_01", desc: "A trip / outing" },
+          { image: "TRIP_02", desc: "Another outing" },
+          { image: "TRIP_03", desc: "One more trip photo" },
+        ] },
+      },
+      {
+        name: "Gifts", note: "little tokens",
+        media: { mode: "shuffle", items: [
+          { image: "GIFT_01", desc: "A gift" },
+          { image: "GIFT_02", desc: "Another gift" },
+          { image: "GIFT_03", desc: "One more gift photo" },
+        ] },
+      },
+      {
+        name: "You", note: "my favourite view",
+        media: { mode: "shuffle", items: [
+          { image: "YOU_01", desc: "A photo of her" },
+          { image: "YOU_02", desc: "Another of her" },
+          { image: "YOU_03", desc: "One more of her" },
+        ] },
+      },
+    ],
+    button: "Continue",
+  },
+
   storm: {
     title: "The storm",
     subtitle: "Not everything was moonlight.",

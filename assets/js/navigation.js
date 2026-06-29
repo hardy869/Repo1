@@ -9,7 +9,7 @@ window.Nav = (function () {
   // Order of the 18 screens (must match the <section> ids in index.html)
   const order = [
     'access', 'welcome', 'before-us', 'when-i-knew', 'little-things',
-    'the-storm', 'bubu-dudu', 'future',
+    'memories', 'the-storm', 'bubu-dudu', 'future',
     'hr-transition', 'resume', 'verification', 'stress-test',
     'culture-fit', 'references', 'compensation', 'offer-letter',
     'final-proposal', 'keepsake-home',
