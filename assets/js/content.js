@@ -118,17 +118,16 @@ window.CONTENT = {
     button: "Continue",
   },
 
-  // A poem you wrote for her. Paste your real Hindi poem in `lines` (one line each).
+  // Your poem for her — in your own words. One line per entry; use "" for a blank line.
   poem: {
     title: "A poem I wrote for you",
     subtitle: "in the language of my heart",
     lines: [
-      "ये चंद पंक्तियाँ, सिर्फ़ तुम्हारे नाम…",
+      "These few lines, only ever meant for you…",
       "",
-      "(अपनी असली कविता यहाँ लिखें —",
-      "हर पंक्ति को एक नई लाइन में रखें)",
+      "(paste your poem here — one line per entry)",
     ],
-    signature: "— तुम्हारा चाँद",
+    signature: "— your Chand",
     button: "Continue",
   },
 
