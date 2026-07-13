@@ -87,7 +87,7 @@ window.CONTENT = {
     body: [
       "There was a café once.",
       "It's gone now — torn down, as if it only ever existed to do one thing: introduce me to you.",
-      "A friend sat us at a small table that doesn't exist anymore.",
+      "A friend lead us at a small table that doesn't exist anymore.",
       "I didn't know it yet, but my whole life started in that room.",
     ],
     image: "IMAGE_PLACEHOLDER_02",
@@ -120,7 +120,7 @@ window.CONTENT = {
 
   // Your poem for her — in your own words. One line per entry; use "" for a blank line.
   poem: {
-    title: "A poem I wrote for you",
+    title: "A poem I wrote for you - My Cutie Patootie",
     subtitle: "in the language of my heart",
     lines: [
       "Tumhare saath Zindagi Alag si lgti h",
@@ -168,7 +168,7 @@ window.CONTENT = {
       "Tumhe humesha sbse pehle rkhna ye vada h mera tum se",
       "Rhenge pure jeevan ek doosre m hi gum se",
       "",
-      "I love you My baby ❤️❤️❤️💋💋💋💋",
+      "I love you My baby, My Bacha, My Taara❤️❤️❤️💋💋💋💋",
     ],
     signature: "— your Chand",
     button: "Continue",
@@ -180,8 +180,8 @@ window.CONTENT = {
     shape: "taurus",   // arranges the 5 stars into Taurus; the bright eye is "Taara"
     cards: [
       {
-        title: "Flowers, every time",
-        text: "I never show up empty-handed. Some part of me needs to watch your face the second you see them.",
+        title: "Flowers, every time (kinda)",
+        text: "Some part of me needs to watch your face the second you see them.",
         image: "IMAGE_PLACEHOLDER_05",
         imageDesc: "Flowers you've given her",
       },
@@ -192,10 +192,10 @@ window.CONTENT = {
         imageDesc: "The dudu-bubu pillow set",
       },
       {
-        title: "The bag in May",
-        text: "Your birthday. I still think about how your eyes went soft. I'd buy you a thousand more.",
+        title: "Our Birthdays",
+        text: "Your birthday. I still think about how your eyes went soft.",
         image: "IMAGE_PLACEHOLDER_07",
-        imageDesc: "The birthday bag (May)",
+        imageDesc: "Our Bithdays Collage",
       },
       {
         title: "You, laughing",
@@ -251,12 +251,20 @@ window.CONTENT = {
         ] },
       },
       {
-        name: "You", note: "my favourite view",
+        name: "Obsessed by You", note: "my favourite view",
         media: { mode: "shuffle", items: [
           { image: "YOU_01", desc: "A photo of her" },
           { image: "YOU_02", desc: "Another of her" },
           { image: "YOU_03", desc: "One more of her" },
         ] },
+      {
+        name: "Us", note: "The Rare element",
+        media: { mode: "shuffle", items: [
+          { image: "US_01", desc: "Us Moment" },
+          { image: "US_02", desc: "Another Us Moment" },
+          { image: "US_03", desc: "One more Us Moment photo" },
+        ] },
+      },
       },
     ],
     button: "Continue",
