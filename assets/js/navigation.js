@@ -12,7 +12,7 @@ window.Nav = (function () {
     'memories', 'the-storm', 'bubu-dudu', 'future',
     'hr-transition', 'resume', 'verification', 'stress-test',
     'culture-fit', 'references', 'compensation', 'offer-letter',
-    'final-proposal', 'keepsake-home',
+    'final-proposal', 'our-future', 'keepsake-home',
   ];
 
   // Screens that use the white corporate (HR) theme

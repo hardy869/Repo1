@@ -59,6 +59,12 @@
 .mem-album .media-block { margin: 0; }
 .mem-album .media-shuffle { min-height: 240px; }
 
+/* ---- Our Future: three portrait photos -------------------------------- */
+.future-photos { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 18px; margin: 1.4rem 0; }
+.fp-card { margin: 0; }
+.fp-card .media { aspect-ratio: 3 / 4; min-height: 0; border-radius: 16px; }
+.fp-card figcaption { font-family: var(--font-script); color: var(--star-gold); font-size: 1.35rem; margin-top: 10px; }
+
 /* ---- Lightbox --------------------------------------------------------- */
 #lightbox {
   position: fixed; inset: 0; z-index: 200; display: none; place-items: center;

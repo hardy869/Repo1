@@ -175,6 +175,19 @@ window.Story = {
       ['future', 'Our future'], ['resume', 'The evaluation'], ['offer-letter', 'The offer'],
       ['final-proposal', 'The moment'],
     ].map(([id, label]) => `<button data-goto="${id}">${label}</button>`).join('');
+    /* ---- Our Future (three portraits) --------------------------------- */
+    setInner('our-future-inner', `
+      <h1 class="title">${C.ourFuture.title}</h1>
+      <p class="subtitle">${C.ourFuture.subtitle}</p>
+      <div class="future-photos">${C.ourFuture.photos.map(p => `
+        <figure class="fp-card">
+          <div class="media">${mediaImg(p.image, p.desc)}</div>
+          <figcaption>${p.caption}</figcaption>
+        </figure>`).join('')}</div>
+      <div class="spacer"></div>
+      <button class="btn-moon" data-action="next">${C.ourFuture.button}</button>
+    `);
+
     setInner('keepsake-home-inner', `
       <h1 class="title">${C.keepsake.title}</h1>
       ${C.keepsake.media ? Media.render(C.keepsake.media) : Media.single(C.keepsake.image, C.keepsake.imageDesc)}

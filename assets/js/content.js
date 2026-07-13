@@ -63,6 +63,7 @@ window.CONTENT = {
       compensation: "hold",
       "offer-letter": "hold",
       "final-proposal": "theme",    // the theme swells for the moment
+      "our-future": "theme",        // keep the theme going through the epilogue
     },
   },
 
@@ -496,6 +497,18 @@ window.CONTENT = {
   /* ======================================================================
      POST-PROPOSAL KEEPSAKE HOME  🏠
      ====================================================================== */
+
+  // "Our Future" — three portrait photos: the ask, the proposal, the wedding soon.
+  ourFuture: {
+    title: "Our Future",
+    subtitle: "The chapters still to come. 🤍",
+    photos: [
+      { image: "FUTURE_01", desc: "Portrait photo", caption: "Asking you to be mine" },
+      { image: "FUTURE_02", desc: "Portrait photo", caption: "The proposal" },
+      { image: "FUTURE_03", desc: "Portrait photo", caption: "Our wedding, soon" },
+    ],
+    button: "Continue",
+  },
 
   keepsake: {
     title: "Himanshu & Rudrakshi",

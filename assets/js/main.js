@@ -81,7 +81,7 @@ window.onNavProgress = function (index, total, id, isHR) {
   if (isHR || id === 'access') { star.classList.remove('show', 'merge'); return; }
 
   star.classList.add('show');
-  const merging = (id === 'final-proposal' || id === 'keepsake-home');
+  const merging = (id === 'final-proposal' || id === 'our-future' || id === 'keepsake-home');
   star.classList.toggle('merge', merging);
 
   if (merging) { star.style.left = '82%'; star.style.top = '14%'; return; }
@@ -286,7 +286,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.body.addEventListener('click', (e) => {
     if (e.target.closest('#yes-btn')) {
       celebrate();
-      setTimeout(() => Nav.goTo('keepsake-home'), 3400);
+      setTimeout(() => Nav.goTo('our-future'), 3400);
     }
   });
 
