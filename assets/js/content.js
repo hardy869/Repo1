@@ -257,6 +257,7 @@ window.CONTENT = {
           { image: "YOU_02", desc: "Another of her" },
           { image: "YOU_03", desc: "One more of her" },
         ] },
+      },
       {
         name: "Us", note: "The Rare element",
         media: { mode: "shuffle", items: [
