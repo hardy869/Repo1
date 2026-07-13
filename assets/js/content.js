@@ -265,7 +265,6 @@ window.CONTENT = {
           { image: "US_03", desc: "One more Us Moment photo" },
         ] },
       },
-      },
     ],
     button: "Continue",
   },
