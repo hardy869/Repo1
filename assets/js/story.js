@@ -136,7 +136,8 @@ window.Story = {
       ${C.bubuDudu.hero ? `
         <div class="bubu-hero">
           <img src="assets/img/${C.bubuDudu.hero.image}.png" alt="Dudu and Bubu"
-               onload="this.closest('.bubu-hero').classList.add('has-img')" onerror="this.style.display='none'">
+               onload="this.closest('.bubu-hero').classList.add('has-img')"
+               onerror="if(this.src.indexOf('.png')>-1){this.src='assets/img/${C.bubuDudu.hero.image}.jpg'}else{this.style.display='none'}">
           <span class="bubu-hero__ph">🐻🐼<small>${C.bubuDudu.hero.desc} → assets/img/${C.bubuDudu.hero.image}.png</small></span>
         </div>` : ''}
       <div class="prose">${C.bubuDudu.body.map(p => `<p>${p}</p>`).join('')}</div>
