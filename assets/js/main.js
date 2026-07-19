@@ -18,7 +18,7 @@ function mediaImg(slot, desc) {
 }
 
 // Image formats the site will try, in order, before falling back to the placeholder.
-var IMG_EXTS = ['jpg', 'jpeg', 'png', 'webp', 'JPG', 'JPEG', 'PNG'];
+var IMG_EXTS = ['jpg', 'jpeg', 'png', 'webp', 'gif', 'JPG', 'JPEG', 'PNG', 'GIF'];
 
 // Returns markup for a video slot. Drop assets/video/<SLOT>.mp4 to fill it.
 function mediaVideo(slot, desc) {

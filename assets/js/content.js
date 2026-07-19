@@ -116,6 +116,7 @@ window.CONTENT = {
     ],
     image: "IMAGE_PLACEHOLDER_04",
     imageDesc: "A photo of her that captures 'she knows her worth'",
+    aspect: "portrait",
     button: "Continue",
   },
 
@@ -185,18 +186,21 @@ window.CONTENT = {
         text: "Some part of me needs to watch your face the second you see them.",
         image: "IMAGE_PLACEHOLDER_05",
         imageDesc: "Flowers you've given her",
+        aspect: "portrait",
       },
       {
         title: "The dudu & bubu pillows",
         text: "Our very first gift. So that even on the nights we were apart, you had a little us to hold.",
         image: "IMAGE_PLACEHOLDER_06",
         imageDesc: "The dudu-bubu pillow set",
+        aspect: "portrait",
       },
       {
         title: "Our Birthdays",
         text: "Your birthday. I still think about how your eyes went soft.",
         image: "IMAGE_PLACEHOLDER_07",
         imageDesc: "Our Bithdays Collage",
+        aspect: "square",
       },
       {
         title: "You, laughing",

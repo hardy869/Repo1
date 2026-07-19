@@ -46,6 +46,7 @@ window.Media = {
     const mode = config.mode || 'single';
     const items = config.items.map(this._norm);
     const cell = (it, loop) => this._cell(it, loop);
+    const ar = config.aspect ? ' ar-' + config.aspect : '';   // portrait | square | landscape
 
     if (mode === 'gallery') {
       return `<div class="media-block media-gallery">${items.map(it => `
@@ -84,13 +85,13 @@ window.Media = {
     }
 
     // single (default)
-    return `<div class="media-block media-single">${cell(items[0])}</div>`;
+    return `<div class="media-block media-single${ar}">${cell(items[0])}</div>`;
   },
 
   // Convenience for sections that still use a single image/imageDesc pair.
-  single(slot, desc) {
+  single(slot, desc, aspect) {
     if (!slot) return '';
-    return this.render({ mode: 'single', items: [{ image: slot, desc: desc || '' }] });
+    return this.render({ mode: 'single', items: [{ image: slot, desc: desc || '' }], aspect: aspect });
   },
 
   /* ---- Behaviours ----------------------------------------------------- */

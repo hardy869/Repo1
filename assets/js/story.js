@@ -43,7 +43,7 @@ window.Story = {
     /* ---- When I knew --------------------------------------------------- */
     setInner('when-i-knew-inner', `
       <h1 class="title">${C.whenIKnew.title}</h1>
-      ${C.whenIKnew.media ? Media.render(C.whenIKnew.media) : Media.single(C.whenIKnew.image, C.whenIKnew.imageDesc)}
+      ${C.whenIKnew.media ? Media.render(C.whenIKnew.media) : Media.single(C.whenIKnew.image, C.whenIKnew.imageDesc, C.whenIKnew.aspect)}
       <div id="wik-lines" class="prose"></div>
       <div class="spacer"></div>
       <button class="btn-moon reveal" id="wik-btn" data-action="next">${C.whenIKnew.button}</button>
@@ -191,7 +191,7 @@ window.Story = {
 
     setInner('keepsake-home-inner', `
       <h1 class="title">${C.keepsake.title}</h1>
-      ${C.keepsake.media ? Media.render(C.keepsake.media) : Media.single(C.keepsake.image, C.keepsake.imageDesc)}
+      ${Media.render({ mode: 'shuffle', items: C.memories.albums.flatMap(a => a.media.items) })}
       <p class="counter">${C.keepsake.counterLabel} <b id="since-counter">…</b></p>
       <p class="prose"><em>${C.keepsake.message}</em></p>
       <div class="chapter-menu">${menu}</div>
@@ -207,7 +207,7 @@ window.Story = {
   openMemory(i, starEl) {
     const c = window.CONTENT.littleThings.cards[i];
     const card = document.getElementById('memory-card');
-    const media = c.media ? Media.render(c.media) : Media.single(c.image, c.imageDesc);
+    const media = c.media ? Media.render(c.media) : Media.single(c.image, c.imageDesc, c.aspect);
     card.innerHTML = `${media}<div class="memory-card__body"><h3>${c.title}</h3><p>${c.text}</p></div>`;
     card.classList.add('show');
     if (starEl) starEl.classList.add('opened');

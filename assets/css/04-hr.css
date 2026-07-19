@@ -29,8 +29,8 @@ body.hr-mode .screen__inner { max-width: 760px; text-align: left; }
 
 /* Résumé */
 .resume-head { display: flex; gap: 16px; align-items: center; margin-bottom: 16px; }
-.resume-head .media { width: 84px; height: 84px; min-height: 84px; border-radius: 50%; flex: 0 0 auto; }
-.resume-head .media__label { font-size: 0.55rem; padding: 4px; }
+.resume-head .media { width: 120px; height: 120px; min-height: 120px; border-radius: 50%; flex: 0 0 auto; }
+.resume-head .media__label { font-size: 0.58rem; padding: 6px; }
 .resume-name { font-family: var(--font-sans); font-weight: 600; font-size: 1.3rem; color: var(--hr-slate); }
 .resume-role { font-family: var(--font-sans); color: var(--hr-muted); font-size: 0.9rem; }
 .tag-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }

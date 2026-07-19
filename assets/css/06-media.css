@@ -4,6 +4,12 @@
 
 .media-block { margin: 1.2rem auto; max-width: 560px; }
 
+/* Aspect ratios for single media (set via aspect: "portrait" | "square" | "landscape") */
+.media-block.ar-portrait, .media-block.ar-square { max-width: 340px; margin-left: auto; margin-right: auto; }
+.media-block.ar-portrait .media { aspect-ratio: 3 / 4; min-height: 0; border-radius: 12px; }
+.media-block.ar-square .media { aspect-ratio: 1 / 1; min-height: 0; border-radius: 12px; }
+.media-block.ar-landscape .media { aspect-ratio: 16 / 9; min-height: 0; border-radius: 12px; }
+
 /* ---- Gallery ---------------------------------------------------------- */
 .media-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; }
 .g-thumb { position: relative; padding: 0; border-radius: 14px; overflow: hidden; display: block; transition: transform var(--fast) var(--ease); }
@@ -58,7 +64,7 @@
 .mem-title { font-family: var(--font-display); color: var(--star-gold); font-size: 1.35rem; margin-bottom: 2px; }
 .mem-note { color: var(--lavender); font-size: 0.9rem; font-style: italic; margin-bottom: 10px; }
 .mem-album .media-block { margin: 0; }
-.mem-album .media-shuffle { min-height: 240px; }
+.mem-album .media-shuffle { aspect-ratio: 3 / 4; min-height: 0; }   /* portrait albums */
 
 /* ---- Our Future: three portrait photos -------------------------------- */
 .future-photos { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 18px; margin: 1.4rem 0; }
