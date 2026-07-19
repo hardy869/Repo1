@@ -88,7 +88,7 @@ window.CONTENT = {
     body: [
       "There was a café once.",
       "It's gone now — torn down, as if it only ever existed to do one thing: introduce me to you.",
-      "A friend lead us at a small table that doesn't exist anymore.",
+      "A friend led us to a small table that doesn't exist anymore.",
       "I didn't know it yet, but my whole life started in that room.",
     ],
     image: "IMAGE_PLACEHOLDER_02",

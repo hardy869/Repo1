@@ -67,7 +67,9 @@ body.hr-mode .screen__inner { max-width: 760px; text-align: left; }
 .ref-stamp { font-size: 0.75rem; font-weight: 600; color: var(--hr-green); border: 1px solid var(--hr-green); padding: 4px 10px; border-radius: 7px; transform: rotate(-4deg); }
 
 /* Compensation perks */
-.perk-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
+.perk-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+@media (max-width: 640px) { .perk-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 400px) { .perk-grid { grid-template-columns: 1fr; } }
 .perk { background: var(--hr-surface); border: 1px solid var(--hr-border); border-radius: 12px; padding: 16px; font-family: var(--font-sans); }
 .perk h4 { color: var(--hr-slate); font-size: 1rem; font-weight: 600; margin-bottom: 4px; }
 .perk p { color: var(--hr-muted); font-size: 0.85rem; }
