@@ -99,9 +99,11 @@
 @keyframes fall { to { transform: translateY(120vh); } }
 
 /* ---- Future star-map dreams ------------------------------------------- */
-.dream-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 14px; margin: 1.5rem 0; }
+.dream-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin: 1.5rem 0; }
+@media (max-width: 620px) { .dream-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 380px) { .dream-grid { grid-template-columns: 1fr; } }
 .dream {
-  background: rgba(255,255,255,0.04); border: 1px solid rgba(244,201,93,0.25);
+  background: rgba(19, 26, 51, 0.72); border: 1px solid rgba(244,201,93,0.25);
   border-radius: 16px; padding: 18px 16px; text-align: left; transition: all var(--fast) var(--ease);
 }
 .dream:hover { transform: translateY(-3px); box-shadow: 0 0 22px rgba(244,201,93,0.2); }
