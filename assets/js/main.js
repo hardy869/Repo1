@@ -11,11 +11,14 @@ function setInner(id, html) {
   if (node) node.innerHTML = html;
 }
 
-// Returns markup for an image slot. Drop assets/img/<SLOT>.jpg to fill it.
+// Returns markup for an image slot. Drop assets/img/<SLOT>.jpg (or .jpeg/.png/.webp) to fill it.
 function mediaImg(slot, desc) {
-  return `<img class="probe" src="assets/img/${slot}.jpg" alt="${desc}">
+  return `<img class="probe" data-slot="${slot}" data-ext="jpg" src="assets/img/${slot}.jpg" alt="${desc}">
           <span class="media__label"><b>${slot}</b>${desc}</span>`;
 }
+
+// Image formats the site will try, in order, before falling back to the placeholder.
+var IMG_EXTS = ['jpg', 'jpeg', 'png', 'webp', 'JPG', 'JPEG', 'PNG'];
 
 // Returns markup for a video slot. Drop assets/video/<SLOT>.mp4 to fill it.
 function mediaVideo(slot, desc) {
@@ -30,11 +33,21 @@ function checkMedia() {
     const wrap = m.closest('.media');
     if (!wrap) return;
     if (m.tagName === 'IMG') {
-      if (m.complete && m.naturalWidth > 0) { wrap.classList.add('has-media'); }
-      else {
-        m.addEventListener('load', () => wrap.classList.add('has-media'));
-        m.addEventListener('error', () => m.classList.add('hidden'));
-      }
+      const onLoad = () => wrap.classList.add('has-media');
+      const onErr = () => {
+        const cur = m.getAttribute('data-ext') || 'jpg';
+        const i = IMG_EXTS.indexOf(cur);
+        if (i > -1 && i < IMG_EXTS.length - 1) {          // try the next extension
+          const next = IMG_EXTS[i + 1];
+          m.setAttribute('data-ext', next);
+          m.src = 'assets/img/' + m.getAttribute('data-slot') + '.' + next;
+        } else {
+          m.classList.add('hidden');                       // give up → show placeholder
+        }
+      };
+      m.addEventListener('load', onLoad);
+      m.addEventListener('error', onErr);
+      if (m.complete) { m.naturalWidth > 0 ? onLoad() : onErr(); }
     } else {
       m.addEventListener('loadeddata', () => wrap.classList.add('has-media'));
       m.addEventListener('error', () => m.classList.add('hidden'));
