@@ -44,9 +44,9 @@
 .reveal-card .reveal-media { position: absolute; inset: 0; }
 
 /* ---- Reel wall (Bubu & Dudu) ------------------------------------------ */
-.media-wall { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; max-width: 620px; }
-.media-wall .media { min-height: 200px; aspect-ratio: 9 / 16; border-radius: 16px; border-color: rgba(232,160,191,0.35); }
-.media-wall .media:nth-child(odd) { aspect-ratio: 3 / 4; }
+.media-wall { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 12px; max-width: 620px; margin: 1.2rem auto 0; }
+.media-wall .media { min-height: 0; aspect-ratio: 3 / 4; border-radius: 16px; border-color: rgba(232,160,191,0.35); }
+.media-wall .media__label { font-size: 0.62rem; padding: 10px; line-height: 1.5; word-break: break-word; }
 
 /* ---- Memories: grid of shuffle albums --------------------------------- */
 .mem-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 18px; margin: 1.4rem 0; }
