@@ -213,6 +213,7 @@ window.CONTENT = {
         text: "You told me you feel most loved when I'm simply present. So I'll keep choosing to be there — for all of it.",
         image: "IMAGE_PLACEHOLDER_09",
         imageDesc: "A quiet moment of the two of you together",
+        aspect: "portrait",
       },
     ],
     button: "Continue",
