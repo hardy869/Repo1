@@ -327,9 +327,9 @@ window.CONTENT = {
     },
     // EXAMPLE of "flip" mode — front shows a photo, tap to flip to the text on the back.
     flips: [
-      { image: "IMAGE_PLACEHOLDER_26", back: "Bubu 🐼" },
-      { image: "IMAGE_PLACEHOLDER_27", back: "Dudu 🐼" },
-      { image: "IMAGE_PLACEHOLDER_28", back: "midnight reels 💌" },
+      { image: "IMAGE_PLACEHOLDER_26", back: "Dudu 🐼, aka Himanshu, famous for manifesting things into reality " },
+      { image: "IMAGE_PLACEHOLDER_27", back: "Bubu 🐼, aka Rudrakshi, famous for her magic called Bubu ka Dabra which controls Dudu" },
+      { image: "IMAGE_PLACEHOLDER_28", back: "Spending time together💌, Watching reels, eating Waffles, Burrito Bowls, Pizzas and Biryanis together forever" },
     ],
     button: "Continue",
   },
@@ -339,11 +339,11 @@ window.CONTENT = {
     subtitle: "The life I want to build with you.",
     dreams: [
       { title: "Chandigarh", text: "A city to finally call ours.", image: "IMAGE_PLACEHOLDER_15", imageDesc: "Chandigarh" },
-      { title: "A home", text: "Too many cushions, and your favourite corner." },
-      { title: "Two kids", text: "With your eyes. Hopefully your patience." },
+      { title: "A home", text: "Too many cushions, and your favourite corner, Dudu Bubu Everywhere" },
+      { title: "Two kids", text: "With your eyes & smile and my calm & patience." },
       { title: "A pack of dogs", text: "As many as you'll let me." },
-      { title: "The whole world", text: "Good food, new cities, one stamp at a time." },
-      { title: "Growing old", text: "Slowly. Together. With family always close." },
+      { title: "The whole world", text: "Good food - mostly healthy (sometime waffles) , new cities, new countries, one stamp at a time." },
+      { title: "Growing old", text: "Slowly. Together. With family always close until our teeth fall out and we smile without them." },
     ],
     // A photo gallery beneath the dreams. mode "gallery" → tap any photo to enlarge.
     media: {
