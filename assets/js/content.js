@@ -322,6 +322,7 @@ window.CONTENT = {
         { video: "VIDEO_PLACEHOLDER_05", desc: "Another reel you two love" },
         { image: "IMAGE_PLACEHOLDER_14", desc: "A reel screenshot / the pillows" },
         { video: "VIDEO_PLACEHOLDER_06", desc: "One more reel for the loop" },
+        { image: "IMAGE_PLACEHOLDER_29", desc: "One more dudu-bubu photo" },
       ],
     },
     // EXAMPLE of "flip" mode — front shows a photo, tap to flip to the text on the back.
