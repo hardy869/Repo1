@@ -66,6 +66,9 @@
 .mem-album .media-block { margin: 0; }
 .mem-album .media-shuffle { aspect-ratio: 3 / 4; min-height: 0; }   /* portrait albums */
 
+/* Keepsake home: portrait shuffle of all memories */
+#keepsake-home .media-shuffle { aspect-ratio: 3 / 4; min-height: 0; max-width: 340px; margin-left: auto; margin-right: auto; }
+
 /* ---- Our Future: three portrait photos -------------------------------- */
 .future-photos { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 18px; margin: 1.4rem 0; }
 .fp-card { margin: 0; }

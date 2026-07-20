@@ -191,7 +191,14 @@ window.Story = {
 
     setInner('keepsake-home-inner', `
       <h1 class="title">${C.keepsake.title}</h1>
-      ${Media.render({ mode: 'shuffle', items: C.memories.albums.flatMap(a => a.media.items) })}
+      ${(() => {
+        const pics = C.memories.albums.flatMap(a => a.media.items).slice();
+        for (let i = pics.length - 1; i > 0; i--) {   // Fisher–Yates: random mix, not album-by-album
+          const j = Math.floor(Math.random() * (i + 1));
+          const t = pics[i]; pics[i] = pics[j]; pics[j] = t;
+        }
+        return Media.render({ mode: 'shuffle', items: pics });
+      })()}
       <p class="counter">${C.keepsake.counterLabel} <b id="since-counter">…</b></p>
       <p class="prose"><em>${C.keepsake.message}</em></p>
       <div class="chapter-menu">${menu}</div>
